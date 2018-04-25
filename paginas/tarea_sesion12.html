@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Primer script</title>
+    <link rel="shortcut icon" type="image/x-icon" href="../Images/gears.ico">
+    <SCRIPT language="JavaScript">
+        var operador1,  operador2, bandera;
+        bandera = true;
+        while (bandera == true){
+            operador1 = parseInt(prompt("Por favor ingresa un numero del 1 al 20"));
+            if(operador1 >0 & operador1<21){
+                bandera = false;
+            }else{
+                alert("El numero que ingreso no esta dentro del rango, por favor vuelva a intentarlo");
+            }
+        }
+        bandera = true;
+        while (bandera == true){
+            operador2 = parseInt(prompt("Por favor ingresa un numero del 1 al 10"));
+            if(operador2 >0 & operador2<11){
+                bandera = false;
+            }else{
+                alert("El numero que ingreso no esta dentro del rango, por favor vuelva a intentarlo");
+            }
+        }
+        alert("La Suma de los 2 numeros es: "+(operador1+operador2));
+        alert("La Resta de los 2 numeros es: "+(operador1-operador2));
+        alert("La Multiplicación de los 2 numeros es: "+(operador1*operador2));
+        alert("La División de los 2 numeros es: "+(operador1/operador2));
+        alert("Este ejercicio se programó con JavaScript y lo programó: Jonathan Iván Pérez Uribe")
+    </SCRIPT>
+</head>
+<body bgcolor="#8b0000">
+</body>
+</html>

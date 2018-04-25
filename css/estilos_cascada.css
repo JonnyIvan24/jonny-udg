@@ -1,0 +1,39 @@
+@charset "utf-8";
+
+.imagen_texto{
+    float: left;
+    margin-right: 10px;
+}
+.division_tabla{
+    clear: left; /* indica el lado del elemento HTML que no debe
+    ser adyacente a ninguna caja posicionada de forma flotante */
+    background-color: #cccccc;
+}
+table{
+    border: 3px solid darkblue;
+}
+th{
+    background-color: #8a8a8a;
+}
+tr:nth-child(even){ /* filas nones*/
+    background-color: #ffffff;
+}
+tr:nth-child(odd){/* filas pares*/
+    background-color: #135485;
+}
+.seccion_listado{
+    background-color: greenyellow;
+    list-style-image: url("../Images/whatsapp10x10.gif");
+}
+a:link{
+    text-decoration: none;
+}
+a:visited{
+    text-decoration: none;
+}
+a:hover{
+    text-decoration: underline;
+}
+a:active{
+    text-decoration: underline;
+}

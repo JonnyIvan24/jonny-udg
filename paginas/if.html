@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Practica del IF de JavaScript</title>
+    <script>
+        var edad = parseInt(prompt("Cuál es tu edad?"));
+        if (edad > 18){
+            aviso = "Eres mayor de edad";
+            document.write(aviso);
+            alert(aviso);
+        }else if(edad > 0 && edad <= 18) {
+            aviso = "Todavia eres un niño";
+            document.write(aviso);
+        }else
+            document.write("escribe una edad valida");
+    </script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Funciones en JavaScript</title>
+    <script language="JavaScript">
+        <!--
+        //Declaracion de variables:
+            var mensaje = "Saludo desde una funcion: Hola";
+        //Generamos una funcion que hará las veces de ALERT
+        function saludar() {
+            alert("Lo que tiene la variable es: " + mensaje);
+            document.write("Contenido de variable: "+mensaje+"<br/>");
+        }
+        //Mandamos llamar a la funcion saludar() para que se ejecute y nos
+        //muestre su funcionamiento en pantalla, en el navegador*****
+
+        //saludar();
+        //-->
+    </script>
+</head>
+<body>
+<a href="#" onclick="saludar();">Se dispara el evento onClick</a><!-- ejecucion de la funcion "onClick" al momneto de dar click-->
+<br />
+<br />
+<a href="#" onmouseover="saludar();">Se dispara el evento onMouseOver</a>
+<br />
+<br />
+<a href="#" onfocus="saludar();">Se dispara el evento onFocus</a>
+</body>
+</html>

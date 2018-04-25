@@ -1,0 +1,137 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Validación de Formularios 2017b con JavaScript (Examen)</title>
+<style type="text/css">
+#contenedor {
+  width: 960px;
+  margin: 0 auto;
+}
+
+#menu{
+	width:18%;
+	float:left;
+	background-color:#333;
+	height:650px;;
+	}
+	
+#formulario {
+	width:58%;
+	float:left;
+	background-color:#CCC;
+	margin:5px;
+	}
+	
+#lateral{
+	width:18%;
+	float:left;
+	background-color:#333;
+	height:650px;
+	}
+
+</style>
+<script language="javascript">
+  <!--
+      //Escribir el código necesario de JavaScript para validar todos los objetos de este
+	  //formulario web ******************************************************************
+	  function validarForm2017b() {
+	      var modelo = document.getElementById("automovil").value;
+	      var marca = document.getElementById("marcas").selectedIndex;
+	      var transmicion = document.getElementsByName("transmicion");
+	      var accesorios = document.getElementsByName("accesorios");
+          var radio = true;
+          var check = true;
+          for(var i=0; i < transmicion.length; i++) {
+              if(transmicion[i].checked) {
+                  radio = false;
+                  break;
+              }
+          }
+          for(var i=0; i < accesorios.length; i++) {
+              if(accesorios[i].checked) {
+                  check = false;
+                  break;
+              }
+          }
+
+          if (modelo.length == 0 || modelo == null || /^\s+$/.test(modelo)) {
+              alert("Favor de escribir el nombre del auto (MODELO)");
+              return false;
+          }else if(marca == 0 || marca == null){
+              alert("Por favor seleccione una marca");
+              return false;
+          }else if (radio){
+              alert("Por favor seleccione una transmicion");
+              return false;
+          }else if (check){
+              alert("Por favor seleccione un accesorio")
+              return false;
+          }
+          return true;
+	  }
+  //-->
+</script>
+</head>
+<body style="background-color:#FC3;">
+<form method="post" action="grabar_auto2017b.php" id="formulario_autos2017b" onsubmit="return validarForm2017b()">
+<div id="contenedor">
+<h2>Formulario de registro de nuevos automóviles</h2>
+  <div id="menu">Aqui va el menu de navegación</div>
+        <div id="formulario" align="left">
+        <fieldset>
+        <legend>Datos del automovil a registrar en la agencia:</legend>
+        <br />
+            <label for="automovil">Nombre del Auto (Modelo): </label>
+          <input type="text" name="automovil" id="automovil" size="60">
+        <br />
+        <br />
+            <label for="marcas">Marca: </label>
+            <!-- Caja de Selección o ComboBox -->
+        <select name="marcas" id="marcas">
+          <option value="">-- Selecciona una marca --</option>
+          <option value="Honda">Honda</option>
+          <option value="Toyota">Toyota</option>
+          <option value="KIA">KIA</option>
+          <option value="Nissan">Nissan</option>
+          <option value="Ford">Ford</option>
+          <option value="Chevrolet">Chevrolet</option>
+          <option value="Jeep">Jeep</option>
+        </select>
+         
+        <br />
+        <br />
+            <span>Tipo de Transmisión: </span><br /><br />
+            <input type="radio" name="transmicion" value="Automatica" id="transmision1" />Automática
+            <br />
+            <input type="radio" name="transmicion" value="Standard" id="transmision2" />Manual
+            <br />
+            <input type="radio" name="transmicion" value="Hibrido" id="transmision3" />Híbrida
+            <br />
+        <br />
+            <span>Accesorios extra que trae este automovil: </span>
+        <br /><br />
+        <input type="checkbox" name="accesorios" value="Rines deportivos" id="accesorios1" />Rines deportivos
+        <br />
+        <input type="checkbox" name="accesorios" value="Quemacocos" id="accesorios2" />Quemacocos
+        <br />
+        <input type="checkbox" name="accesorios" value="Interiores en piel" id="accesorios3" />Interiores en piel
+        <br />
+        <input type="checkbox" name="accesorios" value="Faros de halógeno" id="accesorios4" />Faros de halógeno
+        <br />
+        <input type="checkbox" name="accesorios" value="Polarizado" id="accesorios5" />Polarizado
+        <br />
+        <br>
+        <br>
+        <input type="submit" value="        Grabar Datos        " id="btn_registrar" />
+        
+        <br>
+        
+        </fieldset>
+        </div>
+        </div>
+</form>
+	<div id="lateral">Aqui va el lateral</div>
+</div>
+</body>
+</html>

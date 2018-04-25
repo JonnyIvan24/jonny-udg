@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Tarea Sesión 14</title>
+    <link rel="shortcut icon" type="image/x-icon" href="../Images/gears.ico">
+    <style type="text/css">
+        body{
+            background: repeating-radial-gradient(Red, #000000);
+        }
+        #cont{
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+        #Marvel{
+            background-color: #09068a;
+            width: 30%;
+            height: 50px;
+            float: left;
+        }
+        #Capcom{
+            background-color: #8d8d8d;
+            width: 70%;
+            height: 50px;
+            float: left;
+        }
+    </style>
+    <script language="JavaScript">
+        function numeros() {
+            var numero = parseInt(document.getElementById("txt_caja").value);
+            if(!isNaN(numero)){
+                if(numero >= 1 && numero <= 20){
+                    for(var i = 1; i <= numero; i++){
+                        document.write("Esta es la vez número " + i + " que se ejecuta el FOR"+ "<br />");
+                    }
+                }else {
+                    alert("Favor de escribir en la caja de texto un numero entre 1 y 20");
+                }
+            }else{
+                alert("No es un valor númerico");
+            }
+        }
+    </script>
+</head>
+<body>
+<div id="cont">
+    <div id="Marvel">Marvel</div>
+    <div id="Capcom">
+        <form>
+            Ingrese valor de 1 al 20:
+            <input type="text" id="txt_caja" placeholder="Numero de 1 al 20" onchange="numeros()">
+            <input type="submit" id="boton_exec" value="Ejecutar Comando" onclick="numeros()">
+        </form>
+    </div>
+</div>
+</body>
+</html>

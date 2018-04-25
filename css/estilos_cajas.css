@@ -1,0 +1,163 @@
+@charset "utf-8";
+/* CSS Document */
+
+#contenedor{ 
+   background-color:#6CF; 
+
+   border-top-color:#000; 
+   border-top-style:solid;
+   border-top-width:5px;
+   
+   padding-left:10px;/*espacio entre borde y contenido*/
+   padding-right:10px;
+   height: 800px;/*Definimos la altura*/
+}
+#cabecera{ 
+   background-color:#3C3;
+   border-color:#000;
+   border-style:solid;
+   border-width:1px;
+   padding-left:10px;
+   padding-right:10px;
+   margin-bottom:5px;
+   height: 100px;
+   background: red; /* For browsers that do not support gradients */
+   background: -webkit-linear-gradient(red, yellow, green); /* For Safari 5.1 to 6.0 */
+   background: -o-linear-gradient(red, yellow, green); /* For Opera 11.1 to 12.0 */
+   background: -moz-linear-gradient(red, yellow, green); /* For Firefox 3.6 to 15 */
+   background: linear-gradient(red, yellow, green); /* Standard syntax */
+}
+p{
+   font-family: Dopestyle;
+}
+div{
+   font-family: Dopestyle;
+}
+@font-face {/* agregar una nueva fuente */
+   font-family: Dopestyle;
+   src:url(../fonts/Dopestyle.ttf);
+}
+#menu{ 
+   background-color:#33C;
+   border-color:#000;
+   border-style:solid;
+   border-width:1px;
+   padding-left:10px;
+   padding-right:10px;
+   margin-bottom:5px;
+   height: 50px;
+}
+#contenido{ 
+   background-color:#F90;
+   border-color:red;
+   border-style: dotted;
+   border-width: 3px;
+   border-left-color:#000000;
+   border-left-style:solid;
+   border-left-width:1px;
+   border-right-color:#000000;
+   border-right-style:solid;
+   border-right-width:1px;
+   padding-left:10px;
+   padding-right:10px;
+   margin-bottom:5px;
+   height: 250px;
+   background: red; /* For browsers that do not support gradients */
+   background: -webkit-linear-gradient(left, red , yellow); /* For Safari 5.1 to 6.0 */
+   background: -o-linear-gradient(right, red, yellow); /* For Opera 11.1 to 12.0 */
+   background: -moz-linear-gradient(right, red, yellow); /* For Firefox 3.6 to 15 */
+   background: linear-gradient(to right, red , yellow); /* Standard syntax */
+}
+#principal{ 
+   background-color:#999;
+   border-color:#000;
+   border-style:solid;
+   border-width:1px;
+   padding-left:10px;
+   padding-right:10px; 
+   width:70%;
+   margin-bottom:5px;
+   height: 100px;
+   box-shadow: 10px 10px rgba(150, 2, 5, 0.5); /* el ultimo numero indica la opacidad */
+   
+   background-image: url("../Images/vw.jpg"), url("../Images/GearsofWarSkull.png");
+   background-position: right, left;
+   background-repeat: no-repeat, no-repeat;
+
+   -webkit-transition: width 2s; /* Safari */
+   transition: height 3s;
+   /* codigo para la animación */
+   animation-name: animacion2;
+   animation-duration: 12s;
+   animation-iteration-count: infinite; /* vuelve a repetir la animación*/
+}
+@keyframes animacion1 { /* animacion */
+   from {background-color: red;}
+   to {background-color: #999;}
+}
+@keyframes animacion2 {
+   0%   {background-color: red;}
+   25%  {background-color: yellow;}
+   50%  {background-color: blue;}
+   100% {background-color: green;}
+}
+#principal:hover{ /*pseudoclase hover sirve para realizar acciones cuando pongas el puntero en la etiqueta*/
+   height: 150px;
+   background-color: #999;
+}
+#secundario{ 
+   background-color:#CFF;
+   border-color:#000;
+   border-style:solid;
+   border-width:1px;
+   padding-left:10px;
+   padding-right:10px; 
+   width:20%;
+   margin-bottom:5px; 
+   /*visibility:hidden;/*visibilidad o ocultar*/
+   height: 100px;
+   /* absolute toma los valores y los aplica al contenedor del navegador */
+   position: relative;
+   bottom: 106px;
+   left: 1000px;
+   box-shadow: 10px 10px #09068a;
+   background: red; /* For browsers that do not support gradients */
+   background: -webkit-linear-gradient(left top, red, yellow); /* For Safari 5.1 to 6.0 */
+   background: -o-linear-gradient(bottom right, red, yellow); /* For Opera 11.1 to 12.0 */
+   background: -moz-linear-gradient(bottom right, red, yellow); /* For Firefox 3.6 to 15 */
+   background: linear-gradient(to bottom right, red, yellow); /* Standard syntax */
+   -ms-transform: rotate(20deg); /* IE 9 */
+   -webkit-transform: rotate(20deg); /* Safari */
+   transform: rotate(20deg);
+}
+#secundario2{
+   background-color:#CFF;
+   border-color:#000;
+   border-style:solid;
+   border-width:1px;
+   padding-left:10px;
+   padding-right:10px;
+   width:20%;
+   margin-bottom:5px;
+   /*visibility:hidden;/*visibilidad o ocultar*/
+   height: 100px;
+   /* absolute toma los valores y los aplica al contenedor del navegador */
+   position: relative;
+   bottom: 106px;
+   left: 1000px;
+}
+#pie{ 
+   background-color:#F30;
+   border-color:#000;
+   border-style:solid;
+   border-width:1px;
+   padding-right:10px;
+   padding-left:10px;
+   height: 100px;
+
+   background: red; /* For browsers that do not support gradients */
+   background: -webkit-linear-gradient(red, yellow); /* For Safari 5.1 to 6.0 */
+   background: -o-linear-gradient(red, yellow); /* For Opera 11.1 to 12.0 */
+   background: -moz-linear-gradient(red, yellow); /* For Firefox 3.6 to 15 */
+   background: linear-gradient(red, yellow); /* Standard syntax (general) */
+}

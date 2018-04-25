@@ -1,0 +1,46 @@
+body{
+    background-color: black;
+}
+video{
+    width: 100%;
+}
+.ubi{
+    float: right;
+}
+.required{
+    color: red;
+}
+.submenu {
+    display:none;
+    box-shadow: none;
+}
+.formulario:after{
+    content: "\25BC"; /*código unicode de la flecha hacia abajo*/
+    font-size: .5em;
+    display: inline;
+    position: relative;
+}
+.desplegar:hover > ul.submenu {
+    display: inline-block;
+    list-style: none;
+    padding: 0;
+    color: #FFF;
+}
+    .desplegar:hover >ul.submenu > li{
+        padding: 0;
+    }
+        .desplegar:hover > ul.submenu > li >a:not(.button) {
+            border: 0;
+            border-top: solid 1px rgba(255, 255, 255, 0.125);
+            color: rgba(255, 255, 255, 0.5);
+            display: block;
+            line-height: 3.5rem;
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+            .desplegar:hover > ul.submenu > li > a:not(.button):hover {
+                color: #FFF;
+            }
+#header > a:hover {
+    color: rgba(255, 255, 255, 0.65);
+}

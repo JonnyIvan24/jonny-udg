@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Formularios</title>
+</head>
+<body>
+<form action=formulario.php method="post">
+<fieldset>
+    <legend>Datos del alumno:</legend><!-- crea un recuadro alrededor de su contenido-->
+        <label for="nombre">Nombre:</label><br>
+    <!--input name para nombrar de forma general id para identificar la opcion, placeholder para escribir en el cuadro del input
+    y required paraa solicitar el dato forsozamente-->
+    <input name="nombre" id="nombre" placeholder="Escribe tu nombre..." required><br>
+    </div>
+    <br>
+    <div>
+        <label for="apellido">Apellido:</label><br>
+        <input name="apellido" id="apellido" placeholder="Escribe tu(s) apellido(s)..." required><br>
+    </div>
+    <br>
+    <div>
+        <span>Sexo:</span><br><!-- span es contenedor en linea -->
+        <!-- type tipo de casilla, name para nombrar de forma general, id para identificar la opcion,
+        value para indicar el valor -->
+        <input type="radio" name="genero" id="h" value="Hombre" checked><!-- cheked sirve para que quede seleccionado por default -->
+        <label for="h">Hombre</label><br>
+        <input type="radio" name="genero" id="m" value="Mujer"><!-- el tipo radio sirve para marcar una sola opción -->
+        <label for="m">Mujer</label><br>
+        <input type="radio" name="genero" id="o" value="Otro">
+        <label for="o">Otro</label><br>
+    </div>
+    <br>
+    <div>
+        <span>Carrera:</span><br>
+        <input type="radio" name="carrera" id="tecn" value="tecnologias" checked>
+        <label for="tecn">Tecnologías de la Información</label><br>
+        <input type="radio" name="carrera" id="elec" value="electronica">
+        <label for="elec">Electronica y Computación</label><br>
+        <input type="radio" name="carrera" id="meca" value="mecatronica">
+        <label for="meca">Mecatronica</label><br>
+    </div><br>
+    <div>
+        <label for="semestre">Semestre:</label><br>
+        <!-- select: es un control que muestra un menú de opciones-->
+        <select name="semestre" id="semestre" required><!-- inicialización del select-->
+            <option value="">Selecciona un semestre...</option><!-- opciones del select -->
+            <option value="1">Primer semestre</option>
+            <option value="2">Segundo semestre</option>
+            <option value="3">Tercer semestre</option>
+            <option value="4">Cuarto semestre</option>
+            <option value="5">Quinto semestre</option>
+            <option value="6">Sexto semestre</option>
+            <option value="7">Septimo semestre</option>
+            <option value="8">Octavo semestre</option>
+        </select>
+    </div><br>
+    <div>
+        <label for="comentarios">Cometarios:</label><br>
+        <!-- textarea: recuadro de texto, rows lineas de alto y cols letras de ancho  -->
+        <textarea name="comentarios" id="comentarios" rows="5" cols="50" placeholder="Escribe un comentario" required></textarea>
+    </div><br>
+    <div>
+        <span>¿Cuentas con uno de estos equipos?</span><br>
+        <input type="checkbox" name="equipo" id="pc" value="pc"><!-- el tipo checkbox sirve para marcar varias opciones -->
+        <label for="pc">PC</label><br>
+        <input type="checkbox" name="equipo" id="laptop" value="laptop">
+        <label for="laptop">Laptop</label><br>
+    </div><br>
+    <div>
+        <input type="submit" value="Enviar datos"><!-- sirve para capturar los datos -->
+        <input type="reset"><!-- sirve para reestablecer el formulario -->
+    </div>
+</fieldset>
+</form>
+</body>
+</html>

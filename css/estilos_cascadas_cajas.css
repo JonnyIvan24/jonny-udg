@@ -1,0 +1,61 @@
+@charset "utf-8";
+/* CSS Document */
+
+.imagen_texto_caja{
+    float: right;
+    padding: 5px 5px 3px;/*Arriba (top), laterales, abajo(bottom)*/
+    width: 80%;
+}
+#ptext{
+    padding: 5px 10px 5px 5px;
+    width: 80%;
+}
+.division_tabla_cajas{
+    width: 90%;
+    clear: left;
+    padding: 5px 5px 5px 10px;
+}
+table{
+    border: 3px dotted red;
+    padding: 3px;
+}
+th{
+    background-color: #8a8a8a;
+    padding: 3px;
+}
+tr:nth-child(even){ /* filas nones*/
+    background-color: #ffffff;
+    padding: 3px;
+}
+tr:nth-child(odd){/* filas pares*/
+    background-color: #135485;
+    padding: 3px;
+}
+#seccion_lista_caja{
+    list-style-image: url("../Images/whatsapp10x10.gif");
+    font-family: "Arial Black";
+    font-size: 12px;
+    background-color: rgba(166, 222, 255, 0.8);
+}
+a:link, a:visited {
+    background-color: rgba(0, 0, 0, 0.22);
+    color: white;
+    padding: 5px 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+a:hover, a:active {
+    background-color: rgba(0, 0, 0, 0.58);
+    text-decoration: underline;
+}
+ul{
+    list-style: none;
+
+}
+li{
+    display: inline;
+}
+#ultimo{
+    visibility: hidden;
+}

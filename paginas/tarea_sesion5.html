@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Ventas</title>
+    <script language="JavaScript">
+        <!-- 
+        function cliente() {
+            var cliente = document.getElementById("comprador").value;
+            alert("El nombre del cliente es: "+cliente);
+        }
+        //-->
+    </script>
+</head>
+<body>
+<!-- <form action="guardarDatos.php" method="post" id="formularios_ventas"> -->
+<fieldset>
+    <legend>Datos de  la venta:</legend>
+    <div>
+        <label for="comprador">Nombre del comprador: </label>
+        <input onmouseout="cliente()" name="comprador" id="comprador" placeholder="Escribe el nombre del comprador..." size="30" required><br>
+    </div><br>
+    <div>
+        <label for="tipo">Tipo de motocicleta: </label>
+        <select name="tipo" id="tipo" required>
+            <option value="">Selecciona el tipo de moto...</option>
+            <option value="Moto de Pista">Moto de Pista</option>
+            <option value="Moto de Ruta">Moto de Ruta</option>
+            <option value="Cuatrimoto">Cuatrimoto</option>
+            <option value="Moto de Carreras">Moto de Carreras</option>
+        </select>
+    </div><br>
+    <div>
+        <span>Marca: </span><br>
+        <input type="radio" name="marca" id="honda" value="honda" checked>
+        <label for="honda">Honda</label>
+        <input type="radio" name="marca" id="Yamaha" value="Yamaha">
+        <label for="Yamaha">Yamaha</label>
+        <input type="radio" name="marca" id="Can Am" value="Can Am">
+        <label for="Can Am">Can Am</label>
+        <input type="radio" name="marca" id="Italika" value="Italika">
+        <label for="Italika">Italika</label>
+        <input type="radio" name="marca" id="BMW" value="BMW">
+        <label for="BMW">BMW</label>
+        <input type="radio" name="marca" id="Harley Davison" value="Harley Davison">
+        <label for="Harley Davison">Harley Davison</label><br>
+    </div><br>
+    <div>
+        <label for="dia">Dia: </label>
+        <select name="dia" id="dia" required>
+            <option value="">...</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+            <option value="13">13</option>
+            <option value="14">14</option>
+            <option value="15">15</option>
+            <option value="16">16</option>
+            <option value="17">17</option>
+            <option value="18">18</option>
+            <option value="19">19</option>
+            <option value="20">20</option>
+            <option value="21">21</option>
+            <option value="22">22</option>
+            <option value="23">23</option>
+            <option value="24">24</option>
+            <option value="25">25</option>
+            <option value="26">26</option>
+            <option value="27">27</option>
+            <option value="28">28</option>
+            <option value="29">29</option>
+            <option value="30">30</option>
+            <option value="31">31</option>
+        </select>
+        <label for="mes">Mes: </label>
+        <select name="mes" id="mes" required>
+            <option value="">...</option>
+            <option value="Enero">Enero</option>
+            <option value="Febrero">Febrero</option>
+            <option value="Marzo">Marzo</option>
+            <option value="Abril">Abril</option>
+            <option value="Mayo">Mayo</option>
+            <option value="Junio">Junio</option>
+            <option value="Julio">Julio</option>
+            <option value="Agosto">Agosto</option>
+            <option value="Septiembre">Septiembre</option>
+            <option value="Octubre">Octubre</option>
+            <option value="Noviembre">Noviembre</option>
+            <option value="Diciembre">Diciembre</option>
+        </select>
+        <label for="year">Año: </label>
+        <select name="year" id="year" required>
+            <option value="">...</option>
+            <option value="2015">2015</option>
+            <option value="2016">2016</option>
+            <option value="2017">2017</option>
+            <option value="2018">2018</option>
+            <option value="2019">2019</option>
+            <option value="2020">2020</option>
+        </select>
+    </div><br>
+    <div>
+        <span>Accesorios: </span><br>
+        <label for="casco">Casco</label>
+        <input type="checkbox" name="accesorios" id="casco" value="casco" checked>
+        <label for="guantes">Guantes</label>
+        <input type="checkbox" name="accesorios" id="guantes" value="guantes">
+        <label for="winch">Winch</label>
+        <input type="checkbox" name="accesorios" id="winch" value="winch">
+        <label for="barra de leds">Barra de leds</label>
+        <input type="checkbox" name="accesorios" id="barra de leds" value="barra de leds">
+        <label for="chamarra">Chamarra</label>
+        <input type="checkbox" name="accesorios" id="chamarra" value="chamarra">
+        <label for="googles">Googles</label>
+        <input type="checkbox" name="accesorios" id="googles" value="googles">
+        <label for="botas">Botas</label>
+        <input type="checkbox" name="accesorios" id="botas" value="botas">
+        <label for="rines deportivos">Rines deportivos</label>
+        <input type="checkbox" name="accesorios" id="rines deportivos" value="rines deportivos">
+        <label for="pechera">Pechera</label>
+        <input type="checkbox" name="accesorios" id="pechera" value="pechera">
+        <label for="armadura">Armadura</label>
+        <input type="checkbox" name="accesorios" id="armadura" value="armadura"><br>
+    </div><br>
+    <div>
+        <hidden value="JonathanPerezUribe"></hidden><br>
+    </div>
+    <div>
+        <label for="observaciones">Observaciones</label><br>
+        <textarea name="observaciones" id="observaciones" rows="5" cols="50" placeholder="Observaciones..." required></textarea>
+    </div><br>
+    <div>
+        <input type="submit" value="Guardar datos">
+        <input type="reset" value="Borrar estos datos">
+    </div>
+</fieldset>
+</form>
+</body>
+</html>

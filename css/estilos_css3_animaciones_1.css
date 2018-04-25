@@ -1,0 +1,118 @@
+@charset "utf-8";
+/*Css Document*/
+body{
+    background: repeating-radial-gradient(Red, #000000);
+}
+#contenedor{
+    margin-top: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    width: 960px;
+    background-color: #090656;
+    alignment: center;
+    align-content: center;
+    height: 1400px;
+}
+#banner{
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 10px;
+    width: 880px;
+    height: 200px;
+    background-color: #4e4e4e;
+    transition: transform 2s;
+}
+#banner:hover{
+    transform: rotate(25deg);
+}
+#navegacion{
+    margin: auto;
+    margin-bottom: 10px;
+    width: 880px;
+    height: 50px;
+    background-color: #FFFF99;
+    transition: background-color 2s;
+}
+#navegacion:hover{
+    background-color: red;
+}
+#bienv{
+    margin: auto;
+    margin-bottom: 10px;
+    width: 880px;
+    height: 320px;
+    perspective: 150px;
+    perspective-origin: 50%;
+}
+#bienvenida{
+    margin-top: -35px;
+    background-color: #6699FF;
+    transform: rotateX(20deg);
+    width: 560px;
+    height: 270px;
+}
+#bienvenida:hover{
+
+}
+#bloque1 {
+    background-color: #B2BABB;
+    margin-left: 40px;
+    width: 286px;
+    height: 400px;
+    float: left;
+    transition: width 2s;
+}
+#bloque1:hover{
+    width: 143px;
+}
+
+#bloque2 {
+    background-color: #B2BABB;
+    margin-left: 11px;
+    margin-right: 11px;
+    width: 286px;
+    height: 400px;
+    float: left;
+    transition: width 2s, height 2s;
+}
+#bloque2:hover{
+    width: 143px;
+    height: 200px;
+}
+
+#bloque3 {
+    background-color: #B2BABB;
+    width: 286px;
+    height: 400px;
+    float: left;
+    transition: width 2s, height 2s, transform 2s;
+}
+#bloque3:hover{
+    width: 143px;
+    height: 200px;
+    transform: rotate(90deg);
+}
+#pie {
+    background-color: #FF6600;
+    float: right;
+    margin-top: 10px;
+    margin-right: 40px;
+    margin-left: 40px;
+    width: 880px;
+    height: 100px;
+    transition: height 2s;
+}
+#pie:hover{
+    height: 300px;
+}
+h3{
+    font-size: 20px;
+    font-family: "Dopestyle";
+    text-align: right;
+    color: black;
+    padding-right: 5px;
+}
+@font-face {/* agregar una nueva fuente */
+    font-family: Dopestyle;
+    src:url(../fonts/Dopestyle.ttf);
+}

@@ -1,0 +1,100 @@
+@charset "utf-8";
+body{
+    background: repeating-radial-gradient(Red, #000000);
+}
+#contenedor {
+    background-color: #4e4e4e;
+    margin-right: auto;
+    margin-left: auto;
+    padding-top: 20px;
+    width: 960px;
+    height: 1230px;
+    align-content: center;
+}
+
+#banner {
+    background-color: rgba(0, 0, 0, 0.65);
+    width: 880px;
+    height: 200px;
+    margin-right: auto;
+    margin-left: auto;
+    background-image: url("../Images/GearsofWarSkull.png");
+    background-position: left;
+    background-repeat: no-repeat;
+    background-size: 150px 150px;
+    box-shadow: 7px 7px #960205;
+}
+#navegacion {
+    background-color: #960205;
+    width: 880px;
+    height: 50px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+#bienvenida {
+    background-color: rgb(0, 0, 0);
+    margin-bottom: 10px;
+    width: 880px;
+    height: 320px;
+    margin-right: auto;
+    margin-left: auto;
+    background-image: url("../Images/locust.jpg" ), url("../Images/cogblack.jpg");
+    background-position: left, right;
+    background-repeat: no-repeat, no-repeat;
+    background-size: 300px 300px, 300px 300px;
+}
+
+#bloque1 {
+    background-color: #fae400;
+    margin-left: 40px;
+    width: 286px;
+    height: 400px;
+    float: left;
+    border-radius: 10px;
+    background: linear-gradient(white, orange);
+}
+
+#bloque2 {
+    background-color: #fae400;
+    margin-left: 11px;
+    margin-right: 11px;
+    width: 286px;
+    height: 400px;
+    float: left;
+    border-radius: 10px;
+    background: linear-gradient(white, yellow);
+}
+
+#bloque3 {
+    background-color: #fae400;
+    width: 286px;
+    height: 400px;
+    float: left;
+    border-radius: 10px;
+    background: linear-gradient(white, deepskyblue);
+}
+
+#pie {
+    background: repeating-linear-gradient(Red, #1a1a1a);
+    float: right;
+    margin-top: 10px;
+    margin-right: 40px;
+    margin-left: 40px;
+    width: 880px;
+    height: 100px;
+    box-shadow: 7px 7px #b5b5b5;
+}
+h3{
+    font-size: 20px;
+    font-family: "Dopestyle";
+    text-align: right;
+    color: #bebebe;
+    padding-right: 5px;
+}
+@font-face {/* agregar una nueva fuente */
+    font-family: Dopestyle;
+    src:url(../fonts/Dopestyle.ttf);
+}

@@ -1,0 +1,98 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Posicionamiento con CSS</title>
+
+<style type="text/css" media="screen">
+
+body { background-color:#000;}
+
+#wrapper { 
+    margin:auto; 
+	width:960px; 
+	height:650px; 
+	background-color:#CCC;
+	}
+	
+#caja1 { width:300px; 
+         height:200px; 
+		 margin-left:10px; 
+		 margin-right:10px; 
+		 margin-top:10px; 
+		 background-color:#69F; 
+		 float:left;}
+
+#caja2 { width:300px; 
+         height:200px; 
+		 margin-left:10px; 
+		 margin-right:10px; 
+		 margin-top:10px; 
+		 background-color:#F60; 
+		 float:left;}
+
+#caja3 { width:300px; 
+         height:200px; 
+		 margin-left:10px; 
+		 margin-right:10px; 
+		 margin-top:10px; 
+		 background-color:#C99; 
+		 float:left;}
+
+#caja4 { width:940px;
+         height:350px;
+		 margin-left:10px;
+		 margin-right:10px;
+		 margin-top:40px;
+		 background-color:#FF9; 
+		 clear:both; 
+		 /*
+		 position:absolute; 
+		 top:200px;
+		 */
+		 
+		 position:relative; 
+		 top:10px;
+	}
+	
+#imagen1 { position:relative; top:10px; right:-10px; }
+
+#texto1 { width:500px; 
+          height:290px; 
+		  margin-left:5px; 
+		  margin-right:10px; 
+		  margin-top:10px; 
+		  background-color:#C93; 
+		  padding:5px;
+		  float:right;
+		  right:-10px; 
+		  top:10px;
+		}
+</style>
+
+</head>
+
+<body>
+
+<div id="wrapper">
+
+   <div id="caja1">Texto de la Caja 1</div>
+   <div id="caja2">Texto de la Caja 2</div>
+   <div id="caja3">Texto de la Caja 3</div>
+ 
+   <div id="caja4">
+      <img id="imagen1" 
+      src="http://blogs.sitepointstatic.com/images/tech/212-ie6-missing-ap-elements-screen.png" 
+      alt="Posicionamiento CSS" />
+      
+     <div id="texto1"><br>
+      Texto de la Caja Texto de la Caja Texto de la Caja Texto de la Caja Texto de la Caja Texto de la Caja Texto de la Caja
+      Texto de la Caja Texto de la Caja Texto de la Caja Texto de la Caja Texto de la Caja Texto de la CajaTexto de la Caja 
+     </div>
+    
+   </div>
+ 
+</div>
+
+</body>
+</html>

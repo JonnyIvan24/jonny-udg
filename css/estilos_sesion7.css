@@ -1,0 +1,36 @@
+@charset "utf-8";
+/*Css Document*/
+/*3 maneras de afectar párrafos de HTML*/
+p{
+    color: rgba(143,164,241,1.00);
+    text-align: right;
+    font-size: 24px;
+    font-family: Impact, Haettenschweiler, "Franklin Gothic Book","Arial Black";
+}
+/* esto afecta al atributo id*/
+#primer_parrafo {
+    color: #0000ff;
+    font-size: 30px;
+    background-color: #cccccc;
+    text-align: left;
+
+    padding-top: 10px;
+    padding-bottom: 20px;
+    padding-left: 35px;
+    padding-right: 15px;
+
+    border: 3px;
+    border-color: #ff0000;
+    border-style: double;
+
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+/* este es una clase de CSS | Su nombre inicia con un PUNTO */
+.mis_párrafos {
+    color: #9900ff;
+    text-align: center;
+    font-size: 40px;
+}

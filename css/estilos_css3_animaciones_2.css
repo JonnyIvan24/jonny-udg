@@ -1,0 +1,179 @@
+@charset "utf-8";
+/*Css Document*/
+body{
+    background: repeating-radial-gradient(Red, #000000);
+}
+#contenedor{
+    margin-top: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    width: 960px;
+    background-color: #8a8a8a;
+    alignment: center;
+    align-content: center;
+    height: 1000px;
+}
+#banner{
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 10px;
+    width: 880px;
+    height: 200px;
+    background-color: Green;
+    animation-name: cambiarColor;
+    animation-duration: 5s;
+}
+@keyframes cambiarColor {
+    100% {background-color: Blue;}
+}
+#navegacion{
+    margin: auto;
+    margin-bottom: 10px;
+    width: 880px;
+    height: 50px;
+    background-color: #66CCFF;
+    animation-name: InfinitoNav;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+}
+@keyframes InfinitoNav {
+    25% {background-color:gray;}
+    50% {background-color:red;}
+    75% {background-color:black;}
+    100% {background-color:darkblue;}
+}
+#menu{
+    margin: auto;
+    margin-left: 40px;
+    margin-bottom: 20px;
+    width: 220px;
+    height: 500px;
+    background-color: #1218cc;
+    float: left;
+}
+button{
+    font-family: Dopestyle;
+}
+#bt1{
+    height: 100px;
+    width: 220px;
+    font-size: 24px;
+    transition: background-color, height 2s;
+}
+#bt2{
+    height: 100px;
+    width: 220px;
+    font-size: 24px;
+    transition: background-color 2s, height 2s;
+}
+#bt2:hover{
+    height: 150px;
+    background-color: #8d8d8d;
+}
+#bt3{
+    height: 100px;
+    width: 220px;
+    font-size: 24px;
+    transition: background-color 2s, color 2s, height 2s;
+}
+#bt3:hover{
+    background-color: black;
+    color: white;
+    height: 150px;
+}
+#bt4{
+    height: 100px;
+    width: 220px;
+    font-size: 24px;
+    transition: background-color 2s, height 2s;
+}
+#bt4:hover{
+    height: 150px;
+    background-color: blue;
+}
+#bt5{
+    height: 100px;
+    width: 220px;
+    font-size: 24px;
+    transition: background-color 2s, height 2s;
+}
+#bt5:hover{
+    height: 150px;
+    background-color: red;
+}
+@keyframes InfinitoGajas {
+    50% {background-color:red;}
+    100% {background-color:darkblue;}
+}
+#migajas{
+    background-color: #FF6600;
+    margin-left: 20px;
+    margin-bottom: 20px;
+    width: 640px;
+    height: 30px;
+    float: left;
+    animation-name: InfinitoGajas;
+    animation-duration: 2.5s;
+    animation-iteration-count: infinite;
+}
+#contenido{
+    background-color: #B2BABB;
+    margin-left: 20px;
+    margin-right: 20px;
+    width: 640px;
+    height: 450px;
+    float: left;
+}
+#p1{
+    text-align: justify;
+    margin-right: 5px;
+    margin-left: 5px;
+}
+#p2{
+    font-family: "Comic Sans MS";
+    margin-right: 5px;
+    margin-left: 5px;
+}
+#p3{
+    font-family: Verdana;
+    color: #135485;
+    margin-right: 5px;
+    margin-left: 5px;
+}
+#pie {
+    background-color: #FF6600;
+    float: right;
+    margin-top: 10px;
+    margin-right: 40px;
+    margin-left: 40px;
+    width: 880px;
+    height: 100px;
+    animation-name: colorPie;
+    animation-duration: 3s;
+    animation-iteration-count: 3;
+}
+@keyframes colorPie {
+    25% {background-color:darkblue;;}
+    50% {background-color:darkgreen;}
+    75% {background-color:red;}
+    100% {background-color:black;;}
+}
+h3 {
+    font-size: 20px;
+    font-family: "Dopestyle";
+    text-align: right;
+    color: black;
+    padding-right: 5px;
+}
+h5{
+    font-size: 12px;
+    font-family: "Dopestyle";
+    text-align: right;
+    color: black;
+    padding-top: 2px;
+    padding-right: 5px;
+}
+@font-face {/* agregar una nueva fuente */
+    font-family: Dopestyle;
+    src:url(../fonts/Dopestyle.ttf);
+}
