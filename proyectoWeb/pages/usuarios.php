@@ -1,9 +1,9 @@
 <?php
 require_once "../actions/conexion.php";
 $result = "";
-$sql = 'SELECT * FROM rol';
+$sql = "SELECT U.*, R.rol FROM usuario U INNER JOIN rol R ON U.id_rol=R.id_rol";
 $stmt = $conn->query($sql);
-$rols = $stmt->fetchAll();
+$usuarios = $stmt->fetchAll();
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -12,9 +12,13 @@ $rols = $stmt->fetchAll();
     <link rel="shortcut icon" type="image/x-icon" href="../images/config/gears.ico">
     <title>Captura de clientes</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../css/main.css" />
     <link rel="stylesheet" href="../css/estilos_proyecto.css"/>
-    <script src="../javascript/valida_usuario.js"></script>
+    <script src="../js/valida_usuario.js"></script>
 </head>
 <body class="subpage">
 <form method="post" action="#" id="validar_usuario" onsubmit="return validar_usuario()">
@@ -44,7 +48,7 @@ $rols = $stmt->fetchAll();
     <div class="inner">
         <header class="align-center">
             <p>Store Caps & Sneakers</p>
-            <h2>Usuario</h2>
+            <h2>Usuarios</h2>
         </header>
     </div>
 </section>
@@ -55,81 +59,48 @@ $rols = $stmt->fetchAll();
         <div class="box">
             <div class="content">
                 <header class="align-center">
-                    <p>Formulario</p>
-                    <h2>Captura de datos</h2>
+                    <p>Gestión de</p>
+                    <h2>Usuarios</h2>
                 </header>
-                <!--formulario-->
-                <div class="row uniform">
-                        <div class="12u$">
-                            <div class="4u 12u$(small)">
-                                <h4 for="nombre">Nombre: <span class="required">*</span> </h4>
-                                <input name="nombre" id="nombre" type="text" placeholder="Nombre(s)..." size="50"><br>
-                            </div>
-                        </div>
-
-                        <div class="12u$">
-                            <div class="4u 12u$(small)">
-                                <h4 for="apaterno">Apellido paterno: <span class="required">*</span> </h4>
-                                <input name="apaterno" id="apaterno" type="text" placeholder="Apellido paterno..." size="15"><br>
-                            </div>
-                        </div>
-
-                        <div class="12u$">
-                            <div class="4u 12u$(small)">
-                                <h4 for="giro">Apellido materno: <span class="required">*</span> </h4>
-                                <input name="amaterno" id="amaterno" type="text" placeholder="Apellido materno..." size="15"><br>
-                            </div>
-                        </div>
-
-                        <div class="12u$">
-                            <div class="4u 12u$(small)">
-                                <h4 for="rfc">e-Mail: <span class="required">*</span> </h4>
-                                <input name="email" id="email" type="email" placeholder="nombre@email.com..." size="50"><br>
-                            </div>
-                        </div>
-
-                        <div class="12u$">
-                            <div class="4u 12u$(small)">
-                                <h4 for="rfc">Contraseña: <span class="required">*</span> </h4>
-                                <input name="pass" id="pass" type="password" placeholder="nombre@email.com..." size="15"><br>
-                            </div>
-                        </div>
-
-                        <div class="12u$">
-                            <div class="4u 12u$(small)">
-                                <h4 for="telefono">Telefóno: <span class="required">*</span> </h4>
-                                <input name="telefono" id="telefono" type="number" placeholder="Telefóno..." size="12"><br>
-                            </div>
-                        </div>
-
-                        <div class="12u$">
-                            <div class="4u 12u$(small)">
-                                <h4 for="Fecha de nacimiento">e-Mail: <span class="required">*</span> </h4>
-                                <input name="fecha_nac" id="fecha_nac" type="date" placeholder="Fecha de nacimiento..."><br>
-                            </div>
-                        </div>
-
-                        <div class="4u 12u$(small)">
-                            <h4>Rol: <span class="required">*</span> </h4>
-                            <div class="select-wrapper">
-                                <select name="rol" id="rol">
-                                    <option value="">Seleccione un rol...</option>
-                                    <?php foreach ($rols as $rol){
-                                        echo ('<option value="'.$rol['id_rol'].'">'.$rol['rol'].'</option> ');
-                                    }
-                                    ?>
-                                </select>
-                            </div>
-                        </div>
-
-                        <!-- submit -->
-                        <div class="12u$">
-                            <ul class="actions">
-                                <li><input type="submit" value="Capturar datos" class="button special" /></li>
-                                <li><input type="reset" value="Borrar datos" class="alt" /></li>
-                            </ul>
-                        </div>
-                    <p><span class="required">*</span> Campos obligatorios</p>
+                <!--tabla-->
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Nombre completo</th>
+                            <th>e-Mail</th>
+                            <th>Telefóno</th>
+                            <th>Rol</th>
+                            <th>Acciones</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php
+                        foreach ($usuarios as $usuario){
+                            $id = $usuario['id_usuario'];
+                            echo ('<tr>
+                            <td>'.utf8_encode($usuario['nombre'])." ".utf8_encode($usuario['apaterno'])." ".utf8_encode($usuario['amaterno']).'</td>
+                            <td>'.$usuario['email'].'</td>
+                            <td>'.$usuario['telefono'].'</td>
+                            <td>'.$usuario['rol'].'</td>
+                            <td>
+                            <button type="button" class="btn btn-info" href="">Detalles</button>
+                            <a href="form_usuario.php?id='.$usuario['id_usuario'].'"><button type="button" class="btn btn-success">Editar</button></a>
+                            <button type="button" class="btn btn-danger" href="">Eliminar</button>
+                            </td>
+                        </tr>');
+                        }
+                        ?>
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <td colspan="4"></td>
+                            <td><ul class="actions">
+                                    <li><a href="form_usuario.php" class="button alt">Agregar</a></li>
+                                </ul></td>
+                        </tr>
+                        </tfoot>
+                    </table>
                 </div>
 
             </div>
@@ -155,11 +126,11 @@ $rols = $stmt->fetchAll();
 </footer>
 
 <!-- Scripts -->
-<script src="../javascript/jquery.min.js"></script>
-<script src="../javascript/jquery.scrollex.min.js"></script>
-<script src="../javascript/skel.min.js"></script>
-<script src="../javascript/util.js"></script>
-<script src="../javascript/main.js"></script>
+<script src="../js/jquery.min.js"></script>
+<script src="../js/jquery.scrollex.min.js"></script>
+<script src="../js/skel.min.js"></script>
+<script src="../js/util.js"></script>
+<script src="../js/main.js"></script>
 </form>
 </body>
 <?php

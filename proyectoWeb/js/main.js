@@ -291,6 +291,18 @@ var settings = {
 					resetForms: true,
 					side: 'right'
 				});
+        // Menu.
+        $('#login')
+            .append('<a href="#login" class="close"></a>')
+            .appendTo($body)
+            .panel({
+                delay: 500,
+                hideOnClick: true,
+                hideOnSwipe: true,
+                resetScroll: true,
+                resetForms: true,
+                side: 'right'
+            });
 
 		// Header.
 			if (skel.vars.IEVersion < 9)
