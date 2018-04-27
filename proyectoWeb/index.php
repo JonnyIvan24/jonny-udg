@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE HTML>
 <html lang="es">
 <!--
@@ -7,7 +10,7 @@
 -->
 <html>
 	<head>
-        <link rel="shortcut icon" type="image/x-icon" href="../proyectoWeb/images/gears.ico">
+        <link rel="shortcut icon" type="image/x-icon" href="images/config/gears.ico">
 		<title>LustCaps&Sneakers </title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -18,30 +21,35 @@
 
 		<!-- Header -->
 			<header id="header" class="alt">
-				<div class="logo"><a href="index.html">Lust Caps & Sneakers <span>by Jonathan</span></a></div>
-				<a href="#menu">Menu</a>
+				<div class="logo"><a href="index.php">Lust Caps & Sneakers <span>by Jonathan</span></a></div>
+
+                <a href="#"><img src="images/config/cart.png"> (0)</a>
+                <a href="#menu">Menu</a>
 			</header>
         <!-- Nav -->
         <nav id="menu">
             <ul class="links">
-                <li><a href="index.html">Inicio</a></li>
-                <li><a href="../proyectoWeb/pages/quienes.html">Quienes somos</a></li>
-                <li><a href="../proyectoWeb/pages/servicios.html">Nuestros servicios</a></li>
-                <li><a href="../proyectoWeb/pages/ubicacion.html">Ubicación</a></li>
-				<li class="desplegar"><a class="formulario" href="#submenu">FORMULARIOS </a>
+                <li class="desplegar"><a class="formulario" href="#submenu">Categoría </a>
+                    <ul class="submenu">
+                        <li><a href="../proyectoWeb/pages/captura_articulos.html">Sneakers</a> </li>
+                        <li><a href="../proyectoWeb/pages/captura_vendedores.html">Caps</a> </li>
+                        <li><a href="pages/usuarios.php">Wear</a> </li>
+                    </ul></li>
+				<li class="desplegar"><a class="formulario" href="#submenu">ADMINISTRACIÓN </a>
 					<ul class="submenu">
-						<li><a href="../proyectoWeb/pages/contacto_directo.html">Contacto directo</a></li>
-						<li><a href="../proyectoWeb/pages/captura_vendedores.html">Capturar vendedores</a> </li>
-						<li><a href="../proyectoWeb/pages/captura_clientes.html">Capturar clientes</a> </li>
-						<li><a href="../proyectoWeb/pages/captura_articulos.html">Capturar articulos</a> </li>
+                        <li><a href="../proyectoWeb/pages/captura_articulos.html">Articulos</a> </li>
+						<li><a href="../proyectoWeb/pages/captura_vendedores.html">Pedidos</a> </li>
+						<li><a href="pages/usuarios.php">Usuarios</a> </li>
 					</ul></li>
+                <li><a>Editar perfil</a></li>
+                <li><a>Iniciar sesión</a></li>
             </ul>
         </nav>
 
 		<!-- Banner -->
 			<section class="banner full">
 				<article>
-					<img src="images/cap.jpg" alt="" />
+					<img src="images/config/header/cap.jpg" alt="" />
 					<div class="inner">
 						<header>
 							<p>Caps <a href="https://www.newera.mx/" target="_blank">#NewEraMexico</a></p>
@@ -50,7 +58,7 @@
 					</div>
 				</article>
 				<article>
-					<img src="images/teadidas.jpg"  alt="" />
+					<img src="images/config/header/teadidas.jpg" alt="" />
 					<div class="inner">
 						<header>
 							<p><a href="https://www.adidas.mx/" target="_blank">#AdidasMX</a></p>
@@ -59,7 +67,7 @@
 					</div>
 				</article>
 				<article>
-					<img src="images/W3J87zt.jpg" alt="" />
+					<img src="images/config/header/W3J87zt.jpg" alt="" />
 					<div class="inner">
 						<header>
 							<p><a href="https://www.nike.com/mx/es_la/c/jordan" target="_blank">#NikeJordan</a> </p>
@@ -68,7 +76,7 @@
 					</div>
 				</article>
 				<article>
-					<img src="images/mitchell__ness_gorras.jpg"  alt="" />
+					<img src="images/config/header/mitchell__ness_gorras.jpg" alt="" />
 					<div class="inner">
 						<header>
 							<p>Caps <a href="https://www.mitchellandness.com/" target="_blank">#Mitchell&Ness</a> </p>
@@ -77,7 +85,7 @@
 					</div>
 				</article>
 				<article>
-					<img src="images/shirts-caps.jpg"  alt="" />
+					<img src="images/config/header/shirts-caps.jpg" alt="" />
 					<div class="inner">
 						<header>
 							<p>Wu wear <a href="https://www.wuwear.eu/en/" target="_blank">#wu-tang</a> </p>
@@ -164,22 +172,22 @@
 					<div class="gallery">
 						<div>
 							<div class="image fit">
-								<a href="#"><img src="images/jordan1.jpg" alt="" /></a>
+								<a href="#"><img src="images/config/jordan1.jpg" alt="" /></a>
 							</div>
 						</div>
 						<div>
 							<div class="image fit">
-								<a href="#"><img src="images/cap1.jpg" alt="" /></a>
+								<a href="#"><img src="images/config/cap1.jpg" alt="" /></a>
 							</div>
 						</div>
 						<div>
 							<div class="image fit">
-								<a href="#"><img src="images/wt.jpg" alt="" /></a>
+								<a href="#"><img src="images/config/wt.jpg" alt="" /></a>
 							</div>
 						</div>
 						<div>
 							<div class="image fit">
-								<a href="#"><img src="images/adidastennis.jpg" alt="" /></a>
+								<a href="#"><img src="images/config/adidastennis.jpg" alt="" /></a>
 							</div>
 						</div>
 					</div>
@@ -190,6 +198,13 @@
 		<!-- Footer -->
 			<footer id="footer">
 				<div class="container">
+                    <ul class="icons">
+                        <li><a href="index.php">Inicio</a></li>
+                        <li><a href="../proyectoWeb/pages/quienes.html">Quienes somos</a></li>
+                        <li><a href="../proyectoWeb/pages/servicios.html">Nuestros servicios</a></li>
+                        <li><a href="../proyectoWeb/pages/ubicacion.html">Ubicación</a></li>
+                        <li><a href="../proyectoWeb/pages/contacto_directo.html">Contacto directo</a></li>
+                    </ul>
 					<ul class="icons">
 						<li><a href="https://twitter.com/JonnyPeU" target="_blank" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
 						<li><a href="https://www.facebook.com/jonathan.ivan.319" target="_blank" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
