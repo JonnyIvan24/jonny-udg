@@ -10,7 +10,7 @@ $email = $_POST['email'];
 $pass = md5($_POST['pass']);
 $telefono = $_POST['telefono'];
 $fecha = $_POST['fecha_nac'];
-$rol = (int)$_POST['id_rol'];
+$rol = (int)$_POST['rol'];
 $sql = "UPDATE usuario  SET nombre = '".$nombre."', apaterno = '".$apaterno."', amaterno = '".$amaterno."'
 , email = '".$email."', pass='".$pass."' , telefono = '".$telefono."', fecha_nac = '".$fecha."', id_rol = ".$rol."
 WHERE usuario.id_usuario =".$id;

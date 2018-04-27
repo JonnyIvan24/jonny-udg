@@ -1,5 +1,6 @@
 <?php
 session_start();
+$pagina_anterior = $_SERVER['HTTP_REFERER'];
 require_once "../actions/conexion.php";
 $result = "";
 $sql = 'SELECT * FROM rol';
@@ -129,35 +130,34 @@ if (isset($_GET['id']) && $_GET['id'] !== null){
                                 <input name="fecha_nac" id="fecha_nac" type="date" placeholder="Fecha de nacimiento..." value="<?php if (isset($usuario)){ echo $usuario['fecha_nac'];} ?>"><br>
                             </div>
                         </div>
-
-                        <div class="4u 12u$(small)">
+                        <?php
+                        if (isset($_SESSION['rol']) && $_SESSION['rol']==2) {
+                            echo('<div class="4u 12u$(small)">
                             <h4>Rol: <span class="required">*</span> </h4>
                             <div class="select-wrapper">
                                 <select name="rol" id="rol">
-                                    <option value="">Seleccione un rol...</option>
-                                    <?php foreach ($rols as $rol){
-                                        echo ('<option value="'.$rol['id_rol'].'"');
-                                        if (isset($usuario)){if ($usuario['id_rol']==$rol['id_rol']){echo ('selected');}}
-                                        echo ('>'.utf8_encode($rol['rol']).'</option> ');
+                                    <option value="">Seleccione un rol...</option>');
+                            foreach ($rols as $rol) {
+                                echo('<option value="' . $rol['id_rol'] . '"');
+                                if (isset($usuario)) {
+                                    if ($usuario['id_rol'] == $rol['id_rol']) {
+                                        echo('selected');
                                     }
-                                    ?>
-                                </select>
+                                }
+                                echo('>' . utf8_encode($rol['rol']) . '</option> ');
+                            }
+                            echo ('</select>
                             </div>
-                        </div>
+                        </div>');
+                        }
+                                    ?>
 
                         <!-- submit -->
                         <div class="12u$">
                             <ul class="actions">
                                 <li><input type="submit" value="Capturar datos" class="button special" /></li>
                                 <li><input type="reset" value="Borrar datos" class="alt" /></li>
-                                <!--<li><a class="button"
-                                       <?php /*if (isset($id)){
-                                           echo ('href="usuarios.php"');
-                                       }else{
-                                           echo ('href="../index.php"');
-                                       }*/
-                                       ?>
-                                    >Regresar</a></li>-->
+                                <li><a class="button" href="<?php echo $pagina_anterior;?>">Regresar</a></li>
                             </ul>
                         </div>
                         <p><span class="required">*</span> Campos obligatorios</p>

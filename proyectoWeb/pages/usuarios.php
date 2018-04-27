@@ -1,4 +1,9 @@
 <?php
+$pagina_anterior = $_SERVER['HTTP_REFERER'];
+session_start();
+if(!isset($_SESSION['rol']) && $_SESSION['rol']!==2){
+    header("Refresh: 0; URL=$pagina_anterior");
+}
 require_once "../actions/conexion.php";
 $result = "";
 $sql = "SELECT U.*, R.rol FROM usuario U INNER JOIN rol R ON U.id_rol=R.id_rol";
