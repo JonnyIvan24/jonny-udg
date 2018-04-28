@@ -9,7 +9,7 @@ $sql = "SELECT * FROM usuario WHERE email = '$email'";
 $result = $conn->query($sql);
 
  $rows = $result->fetchAll();
- foreach ($rows as $row)
+ foreach ($rows as $row){}
  if ($pass == $row['pass']) {
     $_SESSION['loggedin'] = true;
     $_SESSION['usuario'] = $row['nombre'];
@@ -22,8 +22,10 @@ $result = $conn->query($sql);
         </script>';
     header("Refresh: 0; URL=$pagina_anterior");
  } else {
-   echo "Username o Password estan incorrectos.";
-   echo "<br><a href='../index.php'>Volver a Intentarlo</a>";
+   echo('<script type=\"text/javascript\">
+        alert(\"Datos erroneos correo o contraeña incorrectos\");
+        </script>');
+     header("Refresh: 0; URL=$pagina_anterior");
  }
 $conn = null;
 

@@ -24,6 +24,11 @@ $usuarios = $stmt->fetchAll();
     <link rel="stylesheet" href="../css/main.css" />
     <link rel="stylesheet" href="../css/estilos_proyecto.css"/>
     <script src="../js/valida_usuario.js"></script>
+    <script language="JavaScript">
+        function confirm(nombre) {
+            return confirm("¿Estas seguro de querer borrar el usuario " + nombre + "?") == true;
+        }
+    </script>
 </head>
 <body class="subpage">
 <form method="post" action="#" id="validar_usuario" onsubmit="return validar_usuario()">
@@ -89,9 +94,11 @@ $usuarios = $stmt->fetchAll();
                             <td>'.$usuario['telefono'].'</td>
                             <td>'.$usuario['rol'].'</td>
                             <td>
-                            <button type="button" class="btn btn-info" href="">Detalles</button>
+                            <button type="button" class="btn btn-info">Detalles</button>
                             <a href="form_usuario.php?id='.$usuario['id_usuario'].'"><button type="button" class="btn btn-success">Editar</button></a>
-                            <button type="button" class="btn btn-danger" href="">Eliminar</button>
+                            <a href="../actions/eliminar_usuario.php?id='.$usuario['id_usuario'].'"><button type="button" class="btn btn-danger" 
+                            onclick="return confirm('.$usuario['nombre'].')"
+                            >Eliminar</button></a>
                             </td>
                         </tr>');
                         }

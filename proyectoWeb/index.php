@@ -1,6 +1,5 @@
 <?php
 session_start();
-
 ?>
 <!DOCTYPE HTML>
 <html lang="es">
@@ -19,69 +18,9 @@ session_start();
 		<link rel="stylesheet" href="../proyectoWeb/css/estilos_proyecto.css"/>
 	</head>
 	<body>
-
-		<!-- Header -->
-			<header id="header" class="alt">
-				<div class="logo"><a href="index.php">Lust Caps & Sneakers <span>by Jonathan</span></a></div>
-                <?php
-                if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true){
-                    echo ('<a href="#login">'.$_SESSION['usuario'].'</a>');
-                }else{
-                    echo ('<a href="#login">Iniciar sesión</a>');
-                }
-                ?>
-                <a href="#"><img src="images/config/cart.png"> (0)</a>
-                <a href="#menu">Menu</a>
-			</header>
-        <!-- Nav -->
-        <nav id="login">
-         <?php
-        if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
-            echo ('<ul class="links">
-                        <li><a href="pages/form_usuario.php?id='.$_SESSION['id'].'">Editar perfil</a></li>
-                        <li><a href="actions/cerrar_sesion.php">Cerrar sesión</a></li>');
-                if ($_SESSION['rol'] == 2){
-                    echo('<li class="desplegar"><a class="formulario" href="#submenu">ADMINISTRACIÓN </a>
-                            <ul class="submenu">
-                                <li><a href="../proyectoWeb/pages/captura_articulos.html">Articulos</a> </li>
-                                <li><a href="../proyectoWeb/pages/captura_vendedores.html">Pedidos</a> </li>
-                                <li><a href="pages/usuarios.php">Usuarios</a> </li>
-                            </ul></li>');
-                }
-                echo ('</ul>');
-            }else{
-            echo('<form class="dropdown-menu p-4" method = "post" action = "actions/iniciar_sesion.php" onsubmit = "" >
-                <div class="form-group" >
-                    <label for="email" > E - mail</label >
-                    <input type = "email" class="form-control" name = "email" id = "email" placeholder = "email@ejemplo.com" >
-                </div >
-                <div class="form-group" >
-                    <label for="pass" > Contraseña</label >
-                    <input type = "password" class="form-control" name = "pass" id = "pass" placeholder = "Contraseña" >
-                </div ><br >
-                <button type = "submit" class="button special" > Ingresar</button ><p ></p >
-                <a href = "pages/form_usuario.php" ><button type = "submit" class="button alt" > Registrarse</button ><a >
-            </form >');
-        }
-        ?>
-        </nav>
-        <nav id="menu">
-            <ul class="links">
-                <li class="desplegar"><a class="formulario" href="#submenu">Categoría</a>
-                    <ul class="submenu">
-                        <li><a href="">Sneakers</a> </li>
-                        <li><a href="">Caps</a> </li>
-                        <li><a href="">Wear</a> </li>
-                    </ul></li>
-                <li class="desplegar"><a class="formulario" href="#submenu">Género</a>
-                    <ul class="submenu">
-                        <li><a href="">Hombre</a> </li>
-                        <li><a href="">Mujer</a> </li>
-                        <li><a href="">Niño</a> </li>
-                        <li><a href="">Niña</a> </li>
-                    </ul></li>
-            </ul>
-        </nav>
+    <?php
+    include "secsions/navindex.php";
+    ?>
 		<!-- Banner -->
 			<section class="banner full">
 				<article>
@@ -231,36 +170,6 @@ session_start();
 			</section>
 
 
-		<!-- Footer -->
-			<footer id="footer">
-				<div class="container">
-                    <ul class="icons">
-                        <li><a href="index.php">Inicio</a></li>
-                        <li><a href="../proyectoWeb/pages/quienes.html">Quienes somos</a></li>
-                        <li><a href="../proyectoWeb/pages/servicios.html">Nuestros servicios</a></li>
-                        <li><a href="../proyectoWeb/pages/ubicacion.html">Ubicación</a></li>
-                        <li><a href="../proyectoWeb/pages/contacto_directo.html">Contacto directo</a></li>
-                    </ul>
-					<ul class="icons">
-						<li><a href="https://twitter.com/JonnyPeU" target="_blank" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
-						<li><a href="https://www.facebook.com/jonathan.ivan.319" target="_blank" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
-						<li><a href="https://www.instagram.com/jonathanivanu/?hl=es" target="_blank" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
-						<li><a href="#" class="icon fa-envelope-o"><span class="label">Email</span></a></li>
-					</ul>
-				</div>
-				<div class="copyright">
-					 &copy; Untitled. All rights reserved.
-					<br>
-					<!-- <a href="https://templated.co/" target="_blank"><span>TEMPLATED</span></a></div> -->
-				</div>
-			</footer>
-
-		<!-- Scripts -->
-			<script src="js/jquery.min.js"></script>
-			<script src="js/jquery.scrollex.min.js"></script>
-			<script src="js/skel.min.js"></script>
-			<script src="js/util.js"></script>
-			<script src="js/main.js"></script>
-
-	</body>
-</html>
+		<?php
+include "secsions/footerindex.php";
+?>
