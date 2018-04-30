@@ -23,8 +23,8 @@ echo ('<body>
                 if ($_SESSION['rol'] == 2){
                     echo('<li class="desplegar"><a class="formulario" href="#submenu">ADMINISTRACIÓN </a>
                             <ul class="submenu">
-                                <li><a href="../proyectoWeb/pages/captura_articulos.html">Articulos</a> </li>
-                                <li><a href="../proyectoWeb/pages/captura_vendedores.php">Pedidos</a> </li>
+                                <li><a href="pages/articulos.php">Articulos</a> </li>
+                                <li><a href="#">Pedidos</a> </li>
                                 <li><a href="pages/usuarios.php">Usuarios</a> </li>
                             </ul></li>');
                 }
