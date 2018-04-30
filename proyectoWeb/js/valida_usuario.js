@@ -2,8 +2,8 @@ function validar_usuario() {
     var nombre = document.getElementById("nombre").value;
     var apaterno = document.getElementById("apaterno").value;
     var amaterno = document.getElementById("amaterno").value;
-    var email = document.getElementById("email").value;
-    var pass = document.getElementById("pass").value;
+    var email = document.getElementById("email1").value;
+    var pass = document.getElementById("pass1").value;
     var telefono = document.getElementById("telefono").value;
     var fecha_nac = document.getElementById("fecha_nac").value;
     var rol = document.getElementById("rol").value;
@@ -28,8 +28,12 @@ function validar_usuario() {
         alert("Favor de escribir la contraseña");
         document.getElementById("pass").focus();
         return false;
-    }else if (telefono.length == 0 || telefono == null || /^\s+$/.test(telefono)) {
-        alert("Favor de escribir el telefóno");
+    }else if (telefono.length == 0 || telefono == null) {
+        alert("El campo telefóno no puede quedar vacio, favor de escribir el telefóno");
+        document.getElementById("telefono").focus();
+        return false;
+    }else if(!/^[0-9]*$/.test(telefono)){
+        alert("Favor de escribir solo numeros");
         document.getElementById("telefono").focus();
         return false;
     }else if (fecha_nac.length == 0 || fecha_nac == null || /^\s+$/.test(fecha_nac)) {

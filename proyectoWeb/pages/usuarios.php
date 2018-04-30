@@ -1,9 +1,6 @@
 <?php
-$pagina_anterior = $_SERVER['HTTP_REFERER'];
 session_start();
-if(!isset($_SESSION['rol']) && $_SESSION['rol']!==2){
-    header("Refresh: 0; URL=$pagina_anterior");
-}
+require "../actions/verificar_rol_admin.php";
 require_once "../actions/conexion.php";
 $result = "";
 $sql = "SELECT U.*, R.rol FROM usuario U INNER JOIN rol R ON U.id_rol=R.id_rol";
@@ -30,29 +27,9 @@ $usuarios = $stmt->fetchAll();
         }
     </script>
 </head>
-<body class="subpage">
-<form method="post" action="#" id="validar_usuario" onsubmit="return validar_usuario()">
-<!-- Header -->
-<header id="header">
-    <div class="logo"><a href="../index.php">Lust Caps & Sneakers <span>by Jonathan</span></a></div>
-    <a href="#menu">Menu</a>
-</header>
-<!-- Nav -->
-<nav id="menu">
-    <ul class="links">
-        <li><a href="../index.php">Inicio</a></li>
-        <li><a href="../pages/quienes.html">Quienes somos</a></li>
-        <li><a href="../pages/servicios.html">Nuestros servicios</a></li>
-        <li><a href="../pages/ubicacion.html">Ubicación</a></li>
-        <li class="desplegar"><a class="formulario" href="#submenu">FORMULARIOS </a>
-            <ul class="submenu">
-                <li><a href="../pages/contacto_directo.html">Contacto directo</a></li>
-                <li><a href="../pages/captura_vendedores.html">Capturar vendedores</a> </li>
-                <li><a href="usuarios.php">Capturar clientes</a> </li>
-                <li><a href="../pages/captura_articulos.html">Capturar articulos</a> </li>
-            </ul></li>
-    </ul>
-</nav>
+<?php
+require "../sections/nav_pages.php";
+?>
 <!-- One -->
 <section id="One" class="wrapper style3">
     <div class="inner">
@@ -64,6 +41,7 @@ $usuarios = $stmt->fetchAll();
 </section>
 
 <!-- Two -->
+<form method="post" action="#" id="validar_usuario">
 <section id="two" class="wrapper style2">
     <div class="inner">
         <div class="box">
@@ -119,33 +97,8 @@ $usuarios = $stmt->fetchAll();
         </div>
     </div>
 </section>
-
-<!-- Footer -->
-<footer id="footer">
-    <div class="container">
-        <ul class="icons">
-            <li><a href="https://twitter.com/JonnyPeU" target="_blank" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
-            <li><a href="https://www.facebook.com/jonathan.ivan.319" target="_blank" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
-            <li><a href="https://www.instagram.com/jonathanivanu/?hl=es" target="_blank" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
-            <li><a href="#" class="icon fa-envelope-o"><span class="label">Email</span></a></li>
-        </ul>
-    </div>
-    <div class="copyright">
-        &copy; Untitled. All rights reserved.
-        <br>
-        <!-- <a href="https://templated.co/" target="_blank"><span>TEMPLATED</span></a></div> -->
-    </div>
-</footer>
-
-<!-- Scripts -->
-<script src="../js/jquery.min.js"></script>
-<script src="../js/jquery.scrollex.min.js"></script>
-<script src="../js/skel.min.js"></script>
-<script src="../js/util.js"></script>
-<script src="../js/main.js"></script>
 </form>
-</body>
 <?php
+require "../sections/footer_pages.php";
 $conn = null;
 ?>
-</html>

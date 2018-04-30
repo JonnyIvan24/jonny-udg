@@ -1,35 +1,36 @@
 <?php
-echo ('<!-- Header -->
-			<header id="header" class="alt">
-				<div class="logo"><a href="index.php">Lust Caps & Sneakers <span>by Jonathan</span></a></div>
+echo ('<body class="subpage">
+<!-- Header -->
+			<header id="header">
+				<div class="logo"><a href="../index.php">Lust Caps & Sneakers <span>by Jonathan</span></a></div>
                 ');
-                if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true){
-                    echo ('<a href="#login">'.$_SESSION['usuario'].'</a>');
-                }else{
-                    echo ('<a href="#login">Iniciar sesión</a>');
-                }
-                echo('
-                <a href="#"><img src="images/config/cart.png"> (0)</a>
+if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true){
+    echo ('<a href="#login">'.$_SESSION['usuario'].'</a>');
+}else{
+    echo ('<a href="#login">Iniciar sesión</a>');
+}
+echo('
+                <a href="#"><img src="../images/config/cart.png"> (0)</a>
                 <a href="#menu">Menu</a>
 			</header>
         <!-- Nav -->
         <nav id="login">
          ');
-        if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
-            echo ('<ul class="links">
-                        <li><a href="pages/form_usuario.php?id='.$_SESSION['id'].'">Editar perfil</a></li>
-                        <li><a href="actions/cerrar_sesion.php">Cerrar sesión</a></li>');
-                if ($_SESSION['rol'] == 2){
-                    echo('<li class="desplegar"><a class="formulario" href="#submenu">ADMINISTRACIÓN </a>
+if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
+    echo ('<ul class="links">
+                        <li><a href="../pages/form_usuario.php?id='.$_SESSION['id'].'">Editar perfil</a></li>
+                        <li><a href="../actions/cerrar_sesion.php">Cerrar sesión</a></li>');
+    if ($_SESSION['rol'] == 2){
+        echo('<li class="desplegar"><a class="formulario" href="#submenu">ADMINISTRACIÓN </a>
                             <ul class="submenu">
-                                <li><a href="../proyectoWeb/pages/captura_articulos.html">Articulos</a> </li>
-                                <li><a href="../proyectoWeb/pages/captura_vendedores.html">Pedidos</a> </li>
-                                <li><a href="pages/usuarios.php">Usuarios</a> </li>
+                                <li><a href="../pages/captura_articulos.html">Articulos</a> </li>
+                                <li><a href="../pages/captura_vendedores.php">Pedidos</a> </li>
+                                <li><a href="../pages/usuarios.php">Usuarios</a> </li>
                             </ul></li>');
-                }
-                echo ('</ul>');
-            }else{
-            echo('<form class="dropdown-menu p-4" method = "post" action = "actions/iniciar_sesion.php" onsubmit = "" >
+    }
+    echo ('</ul>');
+}else{
+    echo('<form class="dropdown-menu p-4" method = "post" action = "../actions/iniciar_sesion.php" onsubmit = "" >
                 <div class="form-group" >
                     <label for="email" > E-mail</label >
                     <input type = "email" class="form-control" name = "email" id = "email" placeholder = "email@ejemplo.com" >
@@ -39,10 +40,10 @@ echo ('<!-- Header -->
                     <input type = "password" class="form-control" name = "pass" id = "pass" placeholder = "Contraseña" >
                 </div ><br >
                 <button type = "submit" class="button special" > Ingresar</button ><p ></p >
-                <a href = "pages/form_usuario.php" ><button type = "submit" class="button alt" > Registrarse</button ><a >
+                <a href = "../pages/form_usuario.php?iniciar=i" ><button type = "button" class="button alt" > Registrarse</button ><a >
             </form >');
-        }
-        echo('
+}
+echo('
         </nav>
         <nav id="menu">
             <ul class="links">

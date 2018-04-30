@@ -1,19 +1,38 @@
 <?php
 session_start();
-$pagina_anterior = $_SERVER['HTTP_REFERER'];
+if (isset($_SERVER['HTTP_REFERER'])){
+    $pagina_anterior = $_SERVER['HTTP_REFERER'];
+}
 require_once "../actions/conexion.php";
+if (isset($_GET['id'])){
+    if ($_GET['id']!== null){
+        $id = (int)$_GET['id'];
+        require "../actions/verificar_inicio_sesion.php";
+        if ($_SESSION['id'] == $id){
+            $id = (int)$_GET['id'];
+            $sqlusuario = 'SELECT * FROM usuario WHERE usuario.id_usuario = '.$id;
+            $stmt1 = $conn->query($sqlusuario);
+            $usuarios = $stmt1->fetchAll();
+            foreach ($usuarios as $usuario){}
+
+        }else{
+            require "../actions/verificar_rol_admin.php";
+            $sqlusuario = 'SELECT * FROM usuario WHERE usuario.id_usuario = '.$id;
+            $stmt1 = $conn->query($sqlusuario);
+            $usuarios = $stmt1->fetchAll();
+            foreach ($usuarios as $usuario){}
+        }
+    }
+}
+if (isset($_GET['inciar'])){
+    if ($_GET['iniciar'] == 'i'){
+        $iniciar = $_GET['iniciar'];
+    }
+}
 $result = "";
 $sql = 'SELECT * FROM rol';
 $stmt = $conn->query($sql);
 $rols = $stmt->fetchAll();
-if (isset($_GET['id']) && $_GET['id'] !== null){
-    $id = (int)$_GET['id'];
-    $sqlusuario = 'SELECT * FROM usuario WHERE usuario.id_usuario = '.$id;
-    $stmt1 = $conn->query($sqlusuario);
-    $usuarios = $stmt1->fetchAll();
-    foreach ($usuarios as $usuario){
-    }
-}
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -30,31 +49,7 @@ if (isset($_GET['id']) && $_GET['id'] !== null){
     <link rel="stylesheet" href="../css/estilos_proyecto.css"/>
     <script src="../js/valida_usuario.js"></script>
 </head>
-<body class="subpage">
-<form method="post" <?php if (isset($usuario)){echo ('action="../actions/actualizar_usuario.php?id='.$usuario['id_usuario'].'"');}else{echo ('action="../actions/agregar_usuario.php"');} ?> onsubmit="return validar_usuario();" {
-
-}" id="form_usuario" ">
-    <!-- Header -->
-    <header id="header">
-        <div class="logo"><a href="../index.php">Lust Caps & Sneakers <span>by Jonathan</span></a></div>
-        <a href="#menu">Menu</a>
-    </header>
-    <!-- Nav -->
-    <nav id="menu">
-        <ul class="links">
-            <li><a href="../index.php">Inicio</a></li>
-            <li><a href="../pages/quienes.html">Quienes somos</a></li>
-            <li><a href="../pages/servicios.html">Nuestros servicios</a></li>
-            <li><a href="../pages/ubicacion.html">Ubicación</a></li>
-            <li class="desplegar"><a class="formulario" href="#submenu">FORMULARIOS </a>
-                <ul class="submenu">
-                    <li><a href="../pages/contacto_directo.html">Contacto directo</a></li>
-                    <li><a href="../pages/captura_vendedores.html">Capturar vendedores</a> </li>
-                    <li><a href="usuarios.php">Capturar clientes</a> </li>
-                    <li><a href="../pages/captura_articulos.html">Capturar articulos</a> </li>
-                </ul></li>
-        </ul>
-    </nav>
+<?php require "../sections/nav_pages.php"; ?>
     <!-- One -->
     <section id="One" class="wrapper style3">
         <div class="inner">
@@ -69,7 +64,11 @@ if (isset($_GET['id']) && $_GET['id'] !== null){
     <section id="two" class="wrapper style2">
         <div class="inner">
             <div class="box">
-                <div class="content">
+                <form class="content" method="post" onsubmit="return validar_usuario();" id="form_usuario"
+                    <?php if (isset($usuario)){echo ('action="../actions/actualizar_usuario.php?id='.$usuario['id_usuario'].'"');
+                    }else if (isset($iniciar)){echo ('action="../actions/agregar_iniciar_usuario.php"');
+                    }else{echo ('action="../actions/agregar_usuario.php"');}
+                    ?>>
                     <header class="align-center">
                         <p>Formulario</p>
                         <?php
@@ -80,60 +79,61 @@ if (isset($_GET['id']) && $_GET['id'] !== null){
                         }
                         ?>
                     </header>
+
                     <!--formulario-->
                     <div class="row uniform">
                         <div class="12u$">
                             <div class="4u 12u$(small)">
-                                <h4 for="nombre">Nombre: <span class="required">*</span> </h4>
+                                <h4 for="nombre"><span class="required">*</span>Nombre:</h4>
                                 <input name="nombre" id="nombre" type="text" placeholder="Nombre(s)..." size="50" value="<?php if (isset($usuario)){ echo utf8_encode($usuario['nombre']);} ?>"><br>
                             </div>
                         </div>
 
                         <div class="12u$">
                             <div class="4u 12u$(small)">
-                                <h4 for="apaterno">Apellido paterno: <span class="required">*</span> </h4>
+                                <h4 for="apaterno"><span class="required">*</span>Apellido paterno:</h4>
                                 <input name="apaterno" id="apaterno" type="text" placeholder="Apellido paterno..." size="15" value="<?php if (isset($usuario)){ echo utf8_encode($usuario['apaterno']);} ?>"><br>
                             </div>
                         </div>
 
                         <div class="12u$">
                             <div class="4u 12u$(small)">
-                                <h4 for="amaterno">Apellido materno: <span class="required">*</span> </h4>
+                                <h4 for="amaterno"><span class="required">*</span>Apellido materno:</h4>
                                 <input name="amaterno" id="amaterno" type="text" placeholder="Apellido materno..." size="15" value="<?php if (isset($usuario)){ echo utf8_encode($usuario['amaterno']);} ?>"><br>
                             </div>
                         </div>
 
                         <div class="12u$">
                             <div class="4u 12u$(small)">
-                                <h4 for="email">e-Mail: <span class="required">*</span> </h4>
-                                <input class="form-control" aria-describedby="emailHelp" name="email" id="email" type="email" placeholder="nombre@email.com..." size="60" value="<?php if (isset($usuario)){ echo $usuario['email'];} ?>"><br>
+                                <h4 for="email"><span class="required">*</span>e-Mail:</h4>
+                                <input class="form-control" aria-describedby="emailHelp" name="email" id="email1" type="email" placeholder="nombre@email.com..." size="60" value="<?php if (isset($usuario)){ echo $usuario['email'];} ?>"><br>
                             </div>
                         </div>
 
                         <div class="12u$">
                             <div class="4u 12u$(small)">
-                                <h4 for="pass">Contraseña: <span class="required">*</span> </h4>
-                                <input name="pass" id="pass" type="password" placeholder="Contraseña..." size="15"><br>
+                                <h4 for="pass"><span class="required">*</span>Contraseña:</h4>
+                                <input name="pass" id="pass1" type="password" placeholder="Contraseña..." size="15"><br>
                             </div>
                         </div>
 
                         <div class="12u$">
                             <div class="4u 12u$(small)">
                                 <h4 for="telefono">Telefóno: <span class="required">*</span> </h4>
-                                <input name="telefono" id="telefono" type="number" placeholder="Telefóno..." size="12" value="<?php if (isset($usuario)){ echo $usuario['telefono'];} ?>"><br>
+                                <input name="telefono" id="telefono" type="text" placeholder="Telefóno..." size="12" value="<?php if (isset($usuario)){ echo $usuario['telefono'];} ?>"><br>
                             </div>
                         </div>
 
                         <div class="12u$">
                             <div class="4u 12u$(small)">
-                                <h4 for="Fecha de nacimiento">Fecha: <span class="required">*</span> </h4>
+                                <h4 for="Fecha de nacimiento"><span class="required">*</span>Fecha:</h4>
                                 <input name="fecha_nac" id="fecha_nac" type="date" placeholder="Fecha de nacimiento..." value="<?php if (isset($usuario)){ echo $usuario['fecha_nac'];} ?>"><br>
                             </div>
                         </div>
                         <?php
                         if (isset($_SESSION['rol']) && $_SESSION['rol']==2) {
                             echo('<div class="4u 12u$(small)">
-                            <h4>Rol: <span class="required">*</span> </h4>
+                            <h4><span class="required">*</span>Rol:</h4>
                             <div class="select-wrapper">
                                 <select name="rol" id="rol">
                                     <option value="">Seleccione un rol...</option>');
@@ -155,21 +155,25 @@ if (isset($_GET['id']) && $_GET['id'] !== null){
                         <!-- submit -->
                         <div class="12u$">
                             <ul class="actions">
-                                <li><input type="submit" value="Capturar datos" class="button special" /></li>
+                                <?php
+                                if (isset($iniciar)){
+                                    echo ('<li><input type="submit" value="Registrarse e iniciar sesión" class="button special" /></li>');
+                                }else{
+                                    echo ('<li><input type="submit" value="Guardar" class="button special" /></li>');
+                                }
+                                ?>
                                 <li><input type="reset" value="Borrar datos" class="alt" /></li>
-                                <li><a class="button" href="<?php echo $pagina_anterior;?>">Regresar</a></li>
+                                <li><a class="button" href="<?php if (isset($pagina_anterior)){ echo $pagina_anterior;}?>">Regresar</a></li>
                             </ul>
                         </div>
                         <p><span class="required">*</span> Campos obligatorios</p>
                     </div>
-
-                </div>
+                </form>
             </div>
         </div>
     </section>
 
-
 <?php
-require "../secsions/footerindex.php";
+require "../sections/footer_pages.php";
 $conn = null;
 ?>

@@ -4,11 +4,11 @@ echo('
 			<footer id="footer">
 				<div class="container">
                     <ul class="icons">
-                        <li><a href="index.php">Inicio</a></li>
-                        <li><a href="../proyectoWeb/pages/quienes.html">Quienes somos</a></li>
-                        <li><a href="../proyectoWeb/pages/servicios.html">Nuestros servicios</a></li>
-                        <li><a href="../proyectoWeb/pages/ubicacion.html">Ubicación</a></li>
-                        <li><a href="../proyectoWeb/pages/contacto_directo.html">Contacto directo</a></li>
+                        <li><a href="../index.php">Inicio</a></li>
+                        <li><a href="../pages/quienes.php">Quienes somos</a></li>
+                        <li><a href="../pages/servicios.php">Nuestros servicios</a></li>
+                        <li><a href="../pages/ubicacion.php">Ubicación</a></li>
+                        <li><a href="../pages/contacto_directo.php">Contacto directo</a></li>
                     </ul>
 					<ul class="icons">
 						<li><a href="https://twitter.com/JonnyPeU" target="_blank" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
@@ -24,13 +24,13 @@ echo('
 				</div>
 			</footer>
 
-		<!-- Scripts -->
-			<script src="js/jquery.min.js"></script>
-			<script src="js/jquery.scrollex.min.js"></script>
-			<script src="js/skel.min.js"></script>
-			<script src="js/util.js"></script>
-			<script src="js/main.js"></script>
 
+		<!-- Scripts -->
+			<script src="../js/jquery.min.js"></script>
+            <script src="../js/jquery.scrollex.min.js"></script>
+            <script src="../js/skel.min.js"></script>
+            <script src="../js/util.js"></script>
+            <script src="../js/main.js"></script>
 	</body>
 </html>');
 ?>

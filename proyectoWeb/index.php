@@ -17,9 +17,8 @@ session_start();
 		<link rel="stylesheet" href="../proyectoWeb/css/main.css" />
 		<link rel="stylesheet" href="../proyectoWeb/css/estilos_proyecto.css"/>
 	</head>
-	<body>
     <?php
-    include "secsions/navindex.php";
+    include "sections/nav_index.php";
     ?>
 		<!-- Banner -->
 			<section class="banner full">
@@ -171,5 +170,5 @@ session_start();
 
 
 		<?php
-include "secsions/footerindex.php";
+include "sections/footer_index.php";
 ?>

@@ -13,8 +13,8 @@ $result = $conn->query($sql);
  if ($pass == $row['pass']) {
     $_SESSION['loggedin'] = true;
     $_SESSION['usuario'] = $row['nombre'];
-    $_SESSION['rol'] = $row['id_rol'];
-    $_SESSION['id'] = $row['id_usuario'];
+    $_SESSION['rol'] = (int)$row['id_rol'];
+    $_SESSION['id'] = (int)$row['id_usuario'];
     $_SESSION['start'] = time();
     //$_SESSION['expire'] = $_SESSION['start'] + (5 * 60);
      echo'<script type="text/javascript">
