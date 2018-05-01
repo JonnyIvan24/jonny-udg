@@ -47,6 +47,7 @@ $rols = $stmt->fetchAll();
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../css/main.css" />
     <link rel="stylesheet" href="../css/estilos_proyecto.css"/>
+
     <script src="../js/valida_usuario.js"></script>
 </head>
 <?php require "../sections/nav_pages.php"; ?>
@@ -127,7 +128,7 @@ $rols = $stmt->fetchAll();
                         <div class="12u$">
                             <div class="4u 12u$(small)">
                                 <h4 for="Fecha de nacimiento"><span class="required">*</span>Fecha:</h4>
-                                <input name="fecha_nac" id="fecha_nac" type="date" placeholder="Fecha de nacimiento..." value="<?php if (isset($usuario)){ echo $usuario['fecha_nac'];} ?>"><br>
+                                <input name="fecha_nac" id="datepicker" type="text" data-provide="datepicker" placeholder="Fecha de nacimiento..." value="<?php if (isset($usuario)){ echo $usuario['fecha_nac'];} ?>"><br>
                             </div>
                         </div>
                         <?php
