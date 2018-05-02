@@ -18,6 +18,7 @@ $result = "";
     <link rel="stylesheet" href="../css/main.css" />
     <link rel="stylesheet" href="../css/estilos_proyecto.css"/>
     <script src="../js/valida_articulos.js"></script>
+    <script src="../js/validar_accion_sku.js"></script>
 </head>
 <?php
 require "../sections/nav_pages.php";
@@ -31,16 +32,16 @@ require "../sections/nav_pages.php";
                     <p>Captura de artículos</p><br>
                     <h2>SKU</h2>
                 </header>
-                <form action="" method="post">
+                <form action="../actions/crear_articulo.php" method="post" enctype="multipart/form-data">
                     <!--formulario-->
                     <div class="row uniform">
                         <div class="12u$">
                             <h3>Acciones para SKU:</h3>
-                            <input type="radio" id="selec" name="accion" checked>
+                            <input onclick="acc_sku()" type="radio" id="selec" name="accion" value="1" checked>
                             <label for="selec">Seleccionar</label>
-                            <input type="radio" id="edit"  name="accion">
+                            <input onclick="acc_sku()" type="radio" id="edit"  name="accion" value="2">
                             <label for="edit">Editar</label>
-                            <input type="radio" id="add"  name="accion">
+                            <input onclick="acc_sku()" type="radio" id="add"  name="accion" value="3">
                             <label for="add">Agregar</label>
                         </div>
                         <div class="4u 12u$(xsmall)">
@@ -49,27 +50,27 @@ require "../sections/nav_pages.php";
                         </div>
                         <div class="4u 12u$(xsmall)">
                             <h4 for="categoria"><span class="required">*</span> Categoría:</h4>
-                            <input name="categoria" id="categoria" type="text" placeholder="Categoría..." size="30"><br>
+                            <input name="categoria" id="categoria" type="text" placeholder="Categoría..." disabled><br>
                         </div>
                         <div class="4u 12u$(xsmall)">
                             <h4 for="marca"><span class="required">*</span> Marca:</h4>
-                            <input name="marca" id="marca" type="text" placeholder="Marca..." size="30"><br>
+                            <input name="marca" id="marca" type="text" placeholder="Marca..." disabled><br>
                         </div>
                         <div class="4u 12u$(xsmall)">
                             <h4 for="nombre"><span class="required">*</span> Nombre:</h4>
-                            <input name="nombre" id="nombre" type="text" placeholder="Nombre..." size="30"><br>
+                            <input name="nombre" id="nombre" type="text" placeholder="Nombre..." disabled><br>
                         </div>
                         <div class="4u 12u$(xsmall)">
                             <h4 for="genero"><span class="required">*</span> Genero:</h4>
-                            <input name="genero" id="genero" type="text" placeholder="Genero..." size="30"><br>
+                            <input name="genero" id="genero" type="text" placeholder="Genero..." size="30" disabled><br>
                         </div>
                         <div class="4u 12u$(xsmall)">
-                            <h4 for="precio"><span class="required">*</span> Precio:</h4>
-                            <input name="precio" id="precio" type="text" placeholder="Precio..." size="30"><br>
+                            <h4 for="preciov"><span class="required">*</span> Precio de venta:</h4>
+                            <input name="precio_v" id="precio_v" type="text" placeholder="Precio de venta..." disabled><br>
                         </div>
                         <div class="12u 12u$(xsmall)">
                             <h4 for="desc"><span class="required">*</span> Descripción:</h4>
-                            <textarea name="desc" id="desc"  placeholder="Descripción..."></textarea><br><br>
+                            <textarea name="desc" id="desc"  placeholder="Descripción..." disabled></textarea><br><br>
                         </div>
                     </div>
                         <header class="align-center">
@@ -99,7 +100,7 @@ require "../sections/nav_pages.php";
                         </div>
                         <div class="4u 12u$(xsmall)">
                             <h4 for="imagen"><span class="required">*</span> Imagen:</h4>
-                            <input name="imagen" id="imagen" type="file" placeholder="Imagen..."><br>
+                            <input name="imagen" id="imagen" type="file" placeholder="Imagen..." accept="image/*"><br>
                         </div>
                         <!-- submit -->
                         <div class="12u$">

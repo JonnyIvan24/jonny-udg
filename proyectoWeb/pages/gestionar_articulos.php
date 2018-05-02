@@ -9,7 +9,9 @@ $result = "";
 $sql = 'SELECT P.sku, E.codigo_producto, P.nombre, P.precio_venta_actual, T.talla, E.color, E.stock 
 FROM producto P INNER JOIN estilo E ON P.sku=E.sku INNER JOIN talla T ON T.id_talla=E.id_talla';
 $stmt = $conn->query($sql);
+$total_filas = $stmt->rowCount();
 $productos = $stmt->fetchAll();
+
 ?>
 <head>
     <meta charset="UTF-8">
@@ -23,7 +25,7 @@ $productos = $stmt->fetchAll();
     <link rel="stylesheet" href="../css/main.css" />
     <link rel="stylesheet" href="../css/estilos_proyecto.css"/>
     <script src="../js/valida_usuario.js"></script>
-    <script language="JavaScript" id="conf">
+    <script id="conf">
         function confirm1(nombre) {
             return confirm("¿Estas seguro de querer borrar el articulo " + nombre + "?") == true;
         }
@@ -83,11 +85,11 @@ require "../sections/nav_pages.php";
                         </table>
                         <header class="align-center">
                             <?php
-                            foreach ($productos as $producto1){
-                                if (empty($producto1)) {
+
+                                if ($total_filas == 0) {
                                     echo('<h3>No hay artículos</h3>');
                                 }
-                            }
+
                             ?>
                             <a href="form_articulo.php" class="button special big">Agregar</a>
                         </header>

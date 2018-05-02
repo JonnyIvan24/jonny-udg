@@ -5,6 +5,7 @@ require_once "../actions/conexion.php";
 $result = "";
 $sql = "SELECT U.*, R.rol FROM usuario U INNER JOIN rol R ON U.id_rol=R.id_rol";
 $stmt = $conn->query($sql);
+$totalrows = $stmt->rowCount();
 $usuarios = $stmt->fetchAll();
 ?>
 <!DOCTYPE html>
@@ -82,15 +83,17 @@ require "../sections/nav_pages.php";
                         }
                         ?>
                         </tbody>
-                        <tfoot>
-                        <tr>
-                            <td colspan="4"></td>
-                            <td><ul class="actions">
-                                    <li><a href="form_usuario.php" class="button alt">Agregar</a></li>
-                                </ul></td>
-                        </tr>
-                        </tfoot>
                     </table>
+                    <header class="align-center">
+                        <?php
+
+                        if ($totalrows == 0) {
+                            echo('<h3>No hay Usuarios</h3>');
+                        }
+
+                        ?>
+                        <a href="form_usuario.php" class="button special big">Agregar</a>
+                    </header>
                 </div>
 
             </div>
