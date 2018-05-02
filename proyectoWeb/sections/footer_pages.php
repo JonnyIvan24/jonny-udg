@@ -31,14 +31,14 @@ echo('
             <script src="../js/skel.min.js"></script>
             <script src="../js/util.js"></script>
             <script src="../js/main.js"></script>
-            <script><script type="text/javascript">
+            <script type="text/javascript">
         $(function () {
             $(\'#datetimepicker10\').datetimepicker({
                 viewMode: \'years\',
                 format: \'MM/YYYY\'
             });
         });
-    </script></script>
+    </script>
 	</body>
 </html>');
 ?>

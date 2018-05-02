@@ -5,7 +5,6 @@ $result ="";
 if (isset($_POST['accion'])){//si existe
     $accion_sku = $_POST['accion'];
     $sku = $_POST['sku'];
-
     if ($accion_sku == 1){// seleccionar
         $sql = "SELECT * FROM producto WHERE producto.sku=".$sku;
         $result = $conn->query($sql);
@@ -16,12 +15,12 @@ if (isset($_POST['accion'])){//si existe
             $color = $_POST['color'];
             $precio_c = (float)$_POST['precio_c'];
             $stock = (int)$_POST['stock'];
-            $imagen = "";
-            $sqlinsert = "INSERT INTO estilo (codigo_producto, sku, id_talla, color, imagen, stock, precio_costo) 
-            VALUE ($id, $sku, $talla, '$color', '$imagen', $stock, $precio_c)";
-            $result = $conn->exec($sqlinsert);
             $ruta = '../images/productos/'.$sku.'-'.$id.'/';
-            $imagen = $ruta.$_FILES["imagen"]["name"];
+            $imagen = "";
+            $sqlinsert = "INSERT INTO estilo (codigo_producto, sku, id_talla, color, ruta, imagen, stock, precio_costo) 
+            VALUE ($id, $sku, $talla, '$color', '$ruta', '$imagen', $stock, $precio_c)";
+            $result = $conn->exec($sqlinsert);
+            $imagen = $_FILES["imagen"]["name"];
             agregar_imagen($sku, $id);
             $sqlup ="UPDATE estilo SET imagen ='".$imagen."' WHERE estilo.codigo_producto=".$id;
             $result = $conn->exec($sqlup);
@@ -52,13 +51,13 @@ VALUE ($marca, $categoria, $genero, '$nombre', '$desc', $precio_v )";
         $color = $_POST['color'];
         $precio_c = (float)$_POST['precio_c'];
         $stock = (int)$_POST['stock'];
+        $ruta = '../images/productos/'.$sku.'-'.$id.'/';
         $imagen = "";
-        $sqlinsert = "INSERT INTO estilo (codigo_producto, sku, id_talla, color, imagen, stock, precio_costo) 
-            VALUE ($id, $sku, $talla, '$color', '$imagen', $stock, $precio_c)";
+        $sqlinsert = "INSERT INTO estilo (codigo_producto, sku, id_talla, color, ruta, imagen, stock, precio_costo) 
+            VALUE ($id, $sku, $talla, '$color', '$ruta', '$imagen', $stock, $precio_c)";
         echo $sqlinsert;
         $result = $conn->exec($sqlinsert);
-        $ruta = '../images/productos/'.$sku.'-'.$id.'/';
-        $imagen = $ruta.$_FILES["imagen"]["name"];
+        $imagen = $_FILES["imagen"]["name"];
         agregar_imagen($sku, $id);
         $sqlup ="UPDATE estilo SET imagen ='".$imagen."' WHERE estilo.codigo_producto=".$id;
         $result = $conn->exec($sqlup);
