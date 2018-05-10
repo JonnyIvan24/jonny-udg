@@ -51,7 +51,6 @@ function BorrarDirectorio($directorio){
         rmdir($directorio);
         return false;
     }else{
-        //header("Refresh: 0; URL=$pagina_anterior");
         return true;
     }
 }
