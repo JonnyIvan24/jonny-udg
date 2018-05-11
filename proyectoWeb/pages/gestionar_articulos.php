@@ -6,8 +6,8 @@ if (isset($_SERVER['HTTP_REFERER'])){
 }
 require "../actions/verificar_rol_admin.php";
 $result = "";
-$sql = 'SELECT P.sku, E.codigo_producto, P.nombre, P.precio_venta_actual, T.talla, E.color, E.stock 
-FROM producto P INNER JOIN estilo E ON P.sku=E.sku INNER JOIN talla T ON T.id_talla=E.id_talla';
+$sql = 'SELECT P.sku, P.nombre, P.precio_venta_actual, m.marca, c2.categoria, g.genero
+FROM producto P INNER JOIN marca m ON P.id_marca = m.id_marca INNER JOIN categoria c2 ON P.id_categoria = c2.id_categoria INNER JOIN genero g ON P.id_genero = g.id_genero';
 $stmt = $conn->query($sql);
 $total_filas = $stmt->rowCount();
 $productos = $stmt->fetchAll();
@@ -42,7 +42,7 @@ require "../sections/nav_pages.php";
                 <div class="content">
                     <header class="align-center">
                         <p>Gestión de</p>
-                        <h2>Articulos</h2>
+                        <h2>Productos</h2>
                     </header>
                     <!--tabla-->
                     <div class="table-wrapper">
@@ -50,32 +50,29 @@ require "../sections/nav_pages.php";
                             <thead>
                             <tr>
                                 <th>SKU</th>
-                                <th>Código</th>
                                 <th>Nombre</th>
+                                <th>Marca</th>
+                                <th>Categoria</th>
+                                <th>Género</th>
                                 <th>Precio Venta</th>
-                                <th>Talla</th>
-                                <th>Color</th>
-                                <th>Stock</th>
                                 <th>Acciones</th>
                             </tr>
                             </thead>
                             <tbody>
                             <?php
                             foreach ($productos as $producto){
-                                $codigo = $producto['codigo_producto'];
                                 echo ('<tr>
                             <td>'.$producto['sku'].'</td>
-                            <td>'.$producto['codigo_producto'].'</td>
                             <td>'.utf8_encode($producto['nombre']).'</td>
+                            <td>'.$producto['marca'].'</td>
+                            <td>'.$producto['categoria'].'</td>
+                            <td>'.$producto['genero'].'</td>
                             <td>$'.$producto['precio_venta_actual'].'</td>
-                            <td>'.$producto['talla'].'</td>
-                            <td>'.$producto['color'].'</td>
-                            <td>'.$producto['stock'].'</td>
                             <td>
                             <button type="button" class="btn btn-info">Detalles</button>
-                            <a href="form_articulo.php?id='.$producto['codigo_producto'].'"><button type="button" class="btn btn-success">Editar</button></a>
-                            <a href="../actions/eliminar_articulo.php?id='.$producto['codigo_producto'].'"><button type="button" class="btn btn-danger" 
-                            onclick="return confirm1('.$producto['codigo_producto'].');"
+                            <a href="form_productos.php?id='.$producto['sku'].'"><button type="button" class="btn btn-success">Editar</button></a>
+                            <a href="../actions/eliminar_productos.php?id='.$producto['sku'].'"><button type="button" class="btn btn-danger" 
+                            onclick="return confirm1('.$producto['sku'].');"
                             >Eliminar</button></a>
                             </td>
                         </tr>');

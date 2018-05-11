@@ -8,8 +8,8 @@ if (isset($_POST['accion'])){//si existe
     if ($accion_sku == 1){// seleccionar
         $sql = "SELECT * FROM producto WHERE producto.sku=".$sku;
         $result = $conn->query($sql);
-        $ifexist = $result->rowCount();
-        if ($ifexist != 0){
+        $ifexist_sku = $result->rowCount();
+        if ($ifexist_sku != 0){//si existe el SKU
             $id = (int)$_POST['codigo'];
             $talla = (int)$_POST['talla'];
             $color = $_POST['color'];
