@@ -7,13 +7,13 @@ if (isset($_SERVER['HTTP_REFERER'])){
 require "../actions/verificar_rol_admin.php";
 $result = "";
 
-if (isset($_GET['id'])){
-    if ($_GET['id'] !== null){
-        $id = (int)$_GET['id'];
+if (isset($_GET['sku'])){
+    if ($_GET['sku'] !== null){
+        $id = (int)$_GET['sku'];
         $sqlsku = 'SELECT * FROM producto WHERE sku='.$id;
         $result = $conn->query($sqlsku);
-        $articulos = $result->fetchAll();
-        foreach ($articulos as $articulo){}
+        $productos = $result->fetchAll();
+        foreach ($productos as $producto){}
         $sqlestilo = 'SELECT * FROM estilo INNER JOIN talla ON estilo.id_talla = talla.id_talla WHERE sku='.$id;
         $result = $conn->query($sqlestilo);
         $estilos = $result->fetchAll();
@@ -61,7 +61,7 @@ require "../sections/nav_pages.php";
                         <div class="4u 12u$(xsmall)">
                             <h4 for="sku"><span class="required">*</span> SKU:</h4>
                             <input name="sku" id="sku" type="text" placeholder="SKU..." size="30"
-                                <?php if (isset($articulo)) echo 'value="'.$articulo['sku'].'"';?>><br>
+                                <?php if (isset($producto)) echo 'value="'.$producto['sku'].'"';?>><br>
                         </div>
                         <div class="4u 12u$(xsmall)">
                             <h4 for="categoria"><span class="required">*</span> Categoría:</h4>
@@ -70,8 +70,8 @@ require "../sections/nav_pages.php";
                                 <?php
                                 foreach ($categorias as $categoria){
                                     echo "<option value='{$categoria['id_categoria']}'";
-                                    if (isset($articulo)){
-                                        if ($articulo['id_categoria'] == $categoria['id_categoria']){
+                                    if (isset($producto)){
+                                        if ($producto['id_categoria'] == $categoria['id_categoria']){
                                             echo " selected";
                                         }
                                     }
@@ -87,8 +87,8 @@ require "../sections/nav_pages.php";
                                 <?php
                                 foreach ($marcas as $marca){
                                     echo "<option value='{$marca['id_marca']}'";
-                                    if (isset($articulo)){
-                                        if ($articulo['id_marca'] == $marca['id_marca']){
+                                    if (isset($producto)){
+                                        if ($producto['id_marca'] == $marca['id_marca']){
                                             echo " selected";
                                         }
                                     }
@@ -100,7 +100,7 @@ require "../sections/nav_pages.php";
                         <div class="4u 12u$(xsmall)">
                             <h4 for="nombre"><span class="required">*</span> Nombre:</h4>
                             <input name="nombre" id="nombre" type="text" placeholder="Nombre..."
-                                <?php if (isset($articulo)) echo 'value="'.$articulo['nombre'].'"';?>><br>
+                                <?php if (isset($producto)) echo 'value="'.$producto['nombre'].'"';?>><br>
                         </div>
                         <div class="4u 12u$(xsmall)">
                             <h4 for="genero"><span class="required">*</span> Genero:</h4>
@@ -109,8 +109,8 @@ require "../sections/nav_pages.php";
                                 <?php
                                 foreach ($generos as $genero){
                                     echo "<option value='{$genero['id_genero']}'";
-                                    if (isset($articulo)){
-                                        if ($articulo['id_genero'] == $genero['id_genero']){
+                                    if (isset($producto)){
+                                        if ($producto['id_genero'] == $genero['id_genero']){
                                             echo " selected";
                                         }
                                     }
@@ -122,11 +122,11 @@ require "../sections/nav_pages.php";
                         <div class="4u 12u$(xsmall)">
                             <h4 for="preciov"><span class="required">*</span> Precio de venta:</h4>
                             <input name="precio_v" id="precio_v" type="text" placeholder="Precio de venta..."
-                                <?php if (isset($articulo)) echo 'value="$ '.$articulo['precio_venta_actual'].'"';?>><br>
+                                <?php if (isset($producto)) echo 'value="$ '.$producto['precio_venta_actual'].'"';?>><br>
                         </div>
                         <div class="12u 12u$(xsmall)">
                             <h4 for="desc"><span class="required">*</span> Descripción:</h4>
-                            <textarea name="desc" id="desc"  placeholder="Descripción..."><?php if (isset($articulo)) echo $articulo['descripcion'];?></textarea><br><br>
+                            <textarea name="desc" id="desc"  placeholder="Descripción..."><?php if (isset($producto)) echo $producto['descripcion'];?></textarea><br><br>
                         </div>
                         <!-- submit -->
                         <div class="12u$">
@@ -168,7 +168,7 @@ require "../sections/nav_pages.php";
                             <td>$ '.$estilo['precio_costo'].'</td>
                             <td>
                             <button type="button" class="btn btn-info">Detalles</button>
-                            <a href="form_articulo.php?id='.$estilo['codigo_producto'].'"><button type="button" class="btn btn-success">Editar</button></a>
+                            <a href="form_articulo.php?sku='.$producto['sku'].'&id='.$estilo['codigo_producto'].'"><button type="button" class="btn btn-success">Editar</button></a>
                             <a href="../actions/eliminar_articulo.php?id='.$estilo['codigo_producto'].'"><button type="button" class="btn btn-danger" 
                             onclick="return confirm1('.$estilo['codigo_producto'].');"
                             >Eliminar</button></a>
@@ -181,8 +181,8 @@ require "../sections/nav_pages.php";
                 if ($total_filas == 0) {
                     echo'<h3>No hay artículos</h3>';
                 }
-                echo "<a href=\"form_articulo.php\" class=\"button special big\">Agregar</a>
-                </header>";
+                echo '<a href="form_articulo.php?sku='.$producto['sku'].'" class="button special big">Agregar</a>
+                </header>';
 
             }
                     ?>

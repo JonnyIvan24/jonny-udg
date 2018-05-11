@@ -6,11 +6,13 @@ if (isset($_SERVER['HTTP_REFERER'])){
 }
 require "../actions/verificar_rol_admin.php";
 $result = "";
-
-if (isset($_GET['id'])){
+if (isset($_GET['sku'])){//si es enviada por get la variable sku
+    $sku =(int)$_GET['sku'];
+}
+if (isset($_GET['id'])){// si es enviada por get la variable id
     if ($_GET['id'] !== null){
         $id = (int)$_GET['id'];
-        $sqlarticulo = 'SELECT * FROM producto INNER JOIN estilo ON producto.sku = estilo.sku WHERE estilo.codigo_producto='.$id;
+        $sqlarticulo = 'SELECT * FROM estilo WHERE codigo_producto='.$id;
         $result = $conn->query($sqlarticulo);
         $articulos = $result->fetchAll();
         foreach ($articulos as $articulo){}
@@ -43,7 +45,7 @@ require "../sections/nav_pages.php";
                     <p>Captura de artículos</p><br>
                     <h2>Artículo</h2>
                 </header>
-                <form action="../actions/crear_articulo.php" method="post" enctype="multipart/form-data">
+                <form action="../actions/crear_articulo.php?sku=<?php echo $sku; ?>" method="post" enctype="multipart/form-data" onsubmit="return validar_articulo();">
                     <!--formulario-->
                     <div class="row uniform">
                         <div class="4u 12u$(xsmall)">
@@ -90,8 +92,8 @@ require "../sections/nav_pages.php";
                         <!-- submit -->
                         <div class="12u$">
                             <ul class="actions">
-                                <li><input type="submit" value="Capturar datos" class="button special" /></li>
-                                <li><a class="button" href="form_productos.php?id=<?php echo "{$articulo['sku']}";?>">Regresar</a></li>
+                                <li><input type="submit" value="Grabar datos" class="button special"/></li>
+                                <li><a class="button" href="form_productos.php?id=<?php echo "{$sku}";?>">Regresar</a></li>
                             </ul>
                             <p><span class="required">*</span> Campos obligatorios</p>
                         </div>

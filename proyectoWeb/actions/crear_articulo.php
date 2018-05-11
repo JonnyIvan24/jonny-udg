@@ -2,73 +2,30 @@
 require_once "conexion.php";
 $result ="";
 
-if (isset($_POST['accion'])){//si existe
-    $accion_sku = $_POST['accion'];
-    $sku = $_POST['sku'];
-    if ($accion_sku == 1){// seleccionar
-        $sql = "SELECT * FROM producto WHERE producto.sku=".$sku;
-        $result = $conn->query($sql);
-        $ifexist_sku = $result->rowCount();
-        if ($ifexist_sku != 0){//si existe el SKU
-            $id = (int)$_POST['codigo'];
-            $talla = (int)$_POST['talla'];
-            $color = $_POST['color'];
-            $precio_c = (float)$_POST['precio_c'];
-            $stock = (int)$_POST['stock'];
-            $ruta = '../images/productos/'.$sku.'-'.$id.'/';
-            $imagen = "";
-            $sqlinsert = "INSERT INTO estilo (codigo_producto, sku, id_talla, color, ruta, imagen, stock, precio_costo) 
+if (isset($_GET['sku'])){//crear articulo
+    $sku = $_GET['sku'];
+    $id = (int)$_POST['codigo'];
+    $talla = (int)$_POST['talla'];
+    $color = $_POST['color'];
+    $precio_c = (float)$_POST['precio_c'];
+    $stock = (int)$_POST['stock'];
+    $ruta = '../images/productos/'.$sku.'-'.$id.'/';
+    $imagen = "";
+    $sqlinsert = "INSERT INTO estilo (codigo_producto, sku, id_talla, color, ruta, imagen, stock, precio_costo) 
             VALUE ($id, $sku, $talla, '$color', '$ruta', '$imagen', $stock, $precio_c)";
-            $result = $conn->exec($sqlinsert);
-            $imagen = $_FILES["imagen"]["name"];
-            agregar_imagen($sku, $id);
-            $sqlup ="UPDATE estilo SET imagen ='".$imagen."' WHERE estilo.codigo_producto=".$id;
-            $result = $conn->exec($sqlup);
-            guardado();
-            $conn = null;
-            header("Refresh: 0; URL=../pages/gestionar_articulos.php");
-        }else{
-            skunull();
-        }
-
-
-    }elseif ($accion_sku == 2){//editar
-        //
-
-
-    }elseif ($accion_sku == 3){//crear
-        $categoria = (int)$_POST['categoria'];
-        $marca = (int)$_POST['marca'];
-        $nombre = $_POST['nombre'];
-        $genero = (int)$_POST['genero'];
-        $precio_v = (float)$_POST['precio_v'];
-        $desc = $_POST['desc'];
-        $sqlsku = "INSERT INTO producto (id_marca, id_categoria, id_genero, nombre, descripcion, precio_venta_actual) 
-VALUE ($marca, $categoria, $genero, '$nombre', '$desc', $precio_v )";
-        $result = $conn->exec($sqlsku);
-        $id = (int)$_POST['codigo'];
-        $talla = (int)$_POST['talla'];
-        $color = $_POST['color'];
-        $precio_c = (float)$_POST['precio_c'];
-        $stock = (int)$_POST['stock'];
-        $ruta = '../images/productos/'.$sku.'-'.$id.'/';
-        $imagen = "";
-        $sqlinsert = "INSERT INTO estilo (codigo_producto, sku, id_talla, color, ruta, imagen, stock, precio_costo) 
-            VALUE ($id, $sku, $talla, '$color', '$ruta', '$imagen', $stock, $precio_c)";
-        echo $sqlinsert;
-        $result = $conn->exec($sqlinsert);
-        $imagen = $_FILES["imagen"]["name"];
-        agregar_imagen($sku, $id);
-        $sqlup ="UPDATE estilo SET imagen ='".$imagen."' WHERE estilo.codigo_producto=".$id;
-        $result = $conn->exec($sqlup);
-        guardado();
-        $conn = null;
-        header("Refresh: 0; URL=../pages/gestionar_articulos.php");
-    }else{
-        echo ('No se escogio una acción valida para sku');
-    }
+    $result = $conn->exec($sqlinsert);
+    $imagen = $_FILES["imagen"]["name"];
+    agregar_imagen($sku, $id);
+    $sqlup ="UPDATE estilo SET imagen ='".$imagen."' WHERE estilo.codigo_producto=".$id;
+    $result = $conn->exec($sqlup);
+    $conn = null;
+    header("Refresh: 0; URL=../pages/form_productos.php?sku='$sku'");
+    guardado();
+    die();
 }else{
-    echo ('No se escogio una acción valida para sku');
+    header("Refresh: 0; URL=../pages/form_productos.php?sku='$sku'");
+    skunull();
+    die();
 }
 
 function agregar_imagen($sku, $id){
@@ -125,5 +82,4 @@ function guardado(){
 alert("Se guardo correctamente");
 </script>';
 }
-$conn = null;
 ?>

@@ -61,7 +61,7 @@ require "../sections/nav_pages.php";
                             <tbody>
                             <?php
                             foreach ($productos as $producto){
-                                echo ('<tr>
+                                echo '<tr>
                             <td>'.$producto['sku'].'</td>
                             <td>'.utf8_encode($producto['nombre']).'</td>
                             <td>'.$producto['marca'].'</td>
@@ -70,12 +70,12 @@ require "../sections/nav_pages.php";
                             <td>$'.$producto['precio_venta_actual'].'</td>
                             <td>
                             <button type="button" class="btn btn-info">Detalles</button>
-                            <a href="form_productos.php?id='.$producto['sku'].'"><button type="button" class="btn btn-success">Editar</button></a>
-                            <a href="../actions/eliminar_productos.php?id='.$producto['sku'].'"><button type="button" class="btn btn-danger" 
+                            <a href="form_productos.php?sku='.$producto['sku'].'"><button type="button" class="btn btn-success">Editar</button></a>
+                            <a href="../actions/eliminar_productos.php?sku='.$producto['sku'].'"><button type="button" class="btn btn-danger" 
                             onclick="return confirm1('.$producto['sku'].');"
                             >Eliminar</button></a>
                             </td>
-                        </tr>');
+                        </tr>';
                             }
                             ?>
                             </tbody>

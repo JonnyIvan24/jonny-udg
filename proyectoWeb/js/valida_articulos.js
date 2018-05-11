@@ -1,29 +1,29 @@
 function validar_articulo() {
-    var idarticulo = document.getElementById("idarticulo").value;
-    var articulo = document.getElementById("articulo").value;
-    var precio = document.getElementById("precio").value;
-    var numero = parseInt(document.getElementById("precio").value);
-    var marca = document.getElementById("marca").value;
+    var codigo = parseInt(document.getElementById("codigo").value);
+    var talla = parseInt(document.getElementById("talla").value);
+    var precio = parseFloat(document.getElementById("precio_c").value);
+    var color = document.getElementById("color").value;
+    var stock = parseInt(document.getElementById("stock").value);
 
-    if (idarticulo.length == 0 || idarticulo == null || /^\s+$/.test(idarticulo)) {
-        alert("Favor de escribir el ID del articulo");
-        document.getElementById("idarticulo").focus();
+    if (isNaN(codigo)) {
+        alert("Favor de escribir el código 'solo números' ");
+        document.getElementById("codigo").focus();
         return false;
-    }else if (articulo.length == 0 || articulo == null || /^\s+$/.test(articulo)) {
-        alert("Favor de escribir el nombre del articulo");
-        document.getElementById("articulo").focus();
+    }else if (isNaN(talla)) {
+        alert("Favor de seleccionar una talla");
+        document.getElementById("talla").focus();
         return false;
-    }else if (precio.length == 0 || precio == null || /^\s+$/.test(precio)) {
+    }else if (isNaN(precio)) {
         alert("Favor de escribir el precio del articulo");
-        document.getElementById("precio").focus();
+        document.getElementById("precio_c").focus();
         return false;
-    }else if(isNaN(numero)){
-        alert("Favor de escribir solo números");
-        document.getElementById("precio").focus();
+    }else if (color.length == 0 || color == null || /^\s+$/.test(color)) {
+        alert("Favor de escribir el color");
+        document.getElementById("color").focus();
         return false;
-    }else if (marca.length == 0 || marca == null || /^\s+$/.test(marca)) {
-        alert("Favor de escribir la marca del articulo");
-        document.getElementById("marca").focus();
+    }else if (isNaN(stock)) {
+        alert("Favor de escribir el stock, si no hay en stock poner 0");
+        document.getElementById("stock").focus();
         return false;
     }
     return true;
