@@ -85,7 +85,14 @@ require "../sections/nav_pages.php";
                             <input name="stock" id="stock" type="text" placeholder="Stock..." size="30"
                                 <?php if (isset($articulo)) echo 'value="'.$articulo['stock'].'"';?>><br>
                         </div>
-                        <div class="4u 12u$(xsmall)">
+                            <?php
+                            if (isset($articulo)){
+                                echo '<div class="12u 12u$(xsmall) align-center">';
+                                echo '<img src="'.$articulo['ruta'].$articulo['imagen'].'" width="300" height="300">';
+                            }else{
+                                echo '<div class="4u 12u$(xsmall)">';
+                            }
+                            ?>
                             <h4 for="imagen"><span class="required">*</span> Imagen:</h4>
                             <input name="imagen" id="imagen" type="file" placeholder="Imagen..." accept="image/*"><br>
                         </div>
@@ -93,7 +100,7 @@ require "../sections/nav_pages.php";
                         <div class="12u$">
                             <ul class="actions">
                                 <li><input type="submit" value="Grabar datos" class="button special"/></li>
-                                <li><a class="button" href="form_productos.php?id=<?php echo "{$sku}";?>">Regresar</a></li>
+                                <li><a class="button" href="form_productos.php?sku=<?php echo "{$sku}";?>">Regresar</a></li>
                             </ul>
                             <p><span class="required">*</span> Campos obligatorios</p>
                         </div>

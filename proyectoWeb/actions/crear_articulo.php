@@ -1,9 +1,9 @@
 <?php
 require_once "conexion.php";
 $result ="";
-
+$pagina_anterior = $_SERVER['HTTP_REFERER'];
 if (isset($_GET['sku'])){//crear articulo
-    $sku = $_GET['sku'];
+    $sku = (int)$_GET['sku'];
     $id = (int)$_POST['codigo'];
     $talla = (int)$_POST['talla'];
     $color = $_POST['color'];
