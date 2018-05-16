@@ -41,7 +41,6 @@ $generos = $result->fetchAll();
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/main.css" />
     <link rel="stylesheet" href="../css/estilos_proyecto.css"/>
-    <script src="../js/valida_articulos.js"></script>
 </head>
 <?php
 require "../sections/nav_pages.php";
@@ -55,7 +54,7 @@ require "../sections/nav_pages.php";
                     <p>Captura de productos</p><br>
                     <h2>Producto "SKU"</h2>
                 </header>
-                <form action="../actions/crear_articulo.php" method="post" enctype="multipart/form-data">
+                <form action="../actions/crear_producto.php" method="post" enctype="multipart/form-data">
                     <!--formulario-->
                     <div class="row uniform">
                         <div class="4u 12u$(xsmall)">
@@ -137,55 +136,55 @@ require "../sections/nav_pages.php";
                             <p><span class="required">*</span> Campos obligatorios</p>
                         </div>
                     </div>
-                </div>
-            </form>
-            <?php
-            if (isset($total_filas)){
-                echo "<header class=\"align-center\">
-                <p> </p>
-                <h2>Artículos ligados al producto</h2>
-            </header><br>
-            <div class=\"table-wrapper\">
-                <table>
-                    <thead>
-                    <tr>
-                        <th>Código</th>
-                        <th>Talla</th>
-                        <th>Color</th>
-                        <th>Stock</th>
-                        <th>Costo</th>
-                        <th>Acciones</th>
-                    </tr>
-                    </thead>
-                    <tbody>";
-                foreach ($estilos as $estilo){
-                    $codigo = $estilo['codigo_producto'];
-                    echo ('<tr>
-                            <td>'.$codigo.'</td>
-                            <td>'.$estilo['talla'].'</td>
-                            <td>'.$estilo['color'].'</td>
-                            <td>'.$estilo['stock'].'</td>
-                            <td>$ '.$estilo['precio_costo'].'</td>
-                            <td>
-                            <button type="button" class="btn btn-info">Detalles</button>
-                            <a href="form_articulo.php?sku='.$producto['sku'].'&id='.$estilo['codigo_producto'].'"><button type="button" class="btn btn-success">Editar</button></a>
-                            <a href="../actions/eliminar_articulo.php?id='.$estilo['codigo_producto'].'"><button type="button" class="btn btn-danger" 
-                            onclick="return confirm1('.$estilo['codigo_producto'].');"
-                            >Eliminar</button></a>
-                            </td>
-                        </tr>');
-                }
-                echo "</tbody>
-                </table>
-                <header class=\"align-center\">";
-                if ($total_filas == 0) {
-                    echo'<h3>No hay artículos</h3>';
-                }
-                echo '<a href="form_articulo.php?sku='.$producto['sku'].'" class="button special big">Agregar</a>
-                </header>';
+                </form>
+                <?php
+                if (isset($total_filas)){
+                    echo "<header class=\"align-center\">
+                    <p>Artículos ligados al producto</p>
+                    <h2>".$producto['nombre']."</h2>
+                </header><br>
+                <div class=\"table-wrapper\">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Código</th>
+                            <th>Talla</th>
+                            <th>Color</th>
+                            <th>Stock</th>
+                            <th>Costo</th>
+                            <th>Acciones</th>
+                        </tr>
+                        </thead>
+                        <tbody>";
+                    foreach ($estilos as $estilo){
+                        $codigo = $estilo['codigo_producto'];
+                        echo ('<tr>
+                                <td>'.$codigo.'</td>
+                                <td>'.$estilo['talla'].'</td>
+                                <td>'.$estilo['color'].'</td>
+                                <td>'.$estilo['stock'].'</td>
+                                <td>$ '.$estilo['precio_costo'].'</td>
+                                <td>
+                                <button type="button" class="btn btn-info">Detalles</button>
+                                <a href="form_articulo.php?sku='.$producto['sku'].'&id='.$estilo['codigo_producto'].'"><button type="button" class="btn btn-success">Editar</button></a>
+                                <a href="../actions/eliminar_articulo.php?id='.$estilo['codigo_producto'].'"><button type="button" class="btn btn-danger" 
+                                onclick="return confirm1('.$estilo['codigo_producto'].');"
+                                >Eliminar</button></a>
+                                </td>
+                            </tr>');
+                    }
+                    echo "</tbody>
+                    </table>
+                    <header class=\"align-center\">";
+                    if ($total_filas == 0) {
+                        echo'<h3>No hay artículos</h3>';
+                    }
+                    echo '<a href="form_articulo.php?sku='.$producto['sku'].'" class="button special big">Agregar</a>
+                    </header>';
 
-            }
-                    ?>
+                }
+                        ?>
+                </div>
             </div>
         </div>
     </div>

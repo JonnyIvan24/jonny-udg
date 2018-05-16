@@ -84,11 +84,11 @@ require "../sections/nav_pages.php";
                             <?php
 
                                 if ($total_filas == 0) {
-                                    echo('<h3>No hay artículos</h3>');
+                                    echo('<h3>No hay productos</h3>');
                                 }
 
                             ?>
-                            <a href="form_articulo.php" class="button special big">Agregar</a>
+                            <a href="form_productos.php" class="button special big">Agregar</a>
                         </header>
                     </div>
                 </div>

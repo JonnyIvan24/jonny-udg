@@ -3,11 +3,17 @@ session_start();
 require_once "../actions/conexion.php";
 if (isset($_SERVER['HTTP_REFERER'])){
     $pagina_anterior = $_SERVER['HTTP_REFERER'];
+}else{
+    $pagina_anterior = "../index.php";
 }
 require "../actions/verificar_rol_admin.php";
 $result = "";
 if (isset($_GET['sku'])){//si es enviada por get la variable sku
     $sku =(int)$_GET['sku'];
+}else{
+    $conn = null;
+    header("Location: $pagina_anterior");
+    die();
 }
 if (isset($_GET['id'])){// si es enviada por get la variable id
     if ($_GET['id'] !== null){
@@ -45,7 +51,8 @@ require "../sections/nav_pages.php";
                     <p>Captura de artículos</p><br>
                     <h2>Artículo</h2>
                 </header>
-                <form action="../actions/crear_articulo.php?sku=<?php echo $sku; ?>" method="post" enctype="multipart/form-data" onsubmit="return validar_articulo();">
+                <form <?php if (isset($articulo)) echo 'action="../actions/actualizar_articulo.php?id='.$id.'"';else echo 'action="../actions/crear_articulo.php?sku='.$sku.'"'; ?>
+                      method="post" enctype="multipart/form-data" onsubmit="return validar_articulo();">
                     <!--formulario-->
                     <div class="row uniform">
                         <div class="4u 12u$(xsmall)">
@@ -86,7 +93,7 @@ require "../sections/nav_pages.php";
                                 <?php if (isset($articulo)) echo 'value="'.$articulo['stock'].'"';?>><br>
                         </div>
                             <?php
-                            if (isset($articulo)){
+                            if (isset($articulo['imagen'])){
                                 echo '<div class="12u 12u$(xsmall) align-center">';
                                 echo '<img src="'.$articulo['ruta'].$articulo['imagen'].'" width="300" height="300">';
                             }else{

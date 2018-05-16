@@ -23,7 +23,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
     if ($_SESSION['rol'] == 2){
         echo('<li class="desplegar"><a class="formulario" href="#submenu">ADMINISTRACIÓN </a>
                             <ul class="submenu">
-                                <li><a href="../pages/gestionar_articulos.php">Articulos</a> </li>
+                                <li><a href="../pages/gestionar_articulos.php">Productos</a> </li>
                                 <li><a href="../pages/captura_vendedores.php">Pedidos</a> </li>
                                 <li><a href="../pages/usuarios.php">Usuarios</a> </li>
                             </ul></li>');

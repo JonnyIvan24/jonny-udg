@@ -19,11 +19,11 @@ if (isset($_GET['sku'])){//crear articulo
     $sqlup ="UPDATE estilo SET imagen ='".$imagen."' WHERE estilo.codigo_producto=".$id;
     $result = $conn->exec($sqlup);
     $conn = null;
-    header("Refresh: 0; URL=../pages/form_productos.php?sku='$sku'");
+    header("Refresh: 0; URL=../pages/form_productos.php?sku=".$sku);
     guardado();
     die();
 }else{
-    header("Refresh: 0; URL=../pages/form_productos.php?sku='$sku'");
+    header("Refresh: 0; URL=../pages/form_productos.php?sku=".$sku);
     skunull();
     die();
 }

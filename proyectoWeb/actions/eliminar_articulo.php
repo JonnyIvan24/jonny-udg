@@ -21,15 +21,18 @@ if(isset($_GET['id']) && $_GET['id'] !== null){
     $sqldelete = "DELETE FROM estilo WHERE estilo.codigo_producto=".$id;
     $stmt = $conn->exec($sqldelete);
     $conn = null;
+    header("Refresh: 0; URL=$pagina_anterior");
     echo'<script type="text/javascript">
         alert("Artículo eliminado exitosamente");
         </script>';
-    header("Refresh: 0; URL=$pagina_anterior");
+    die();
 }else{
+    $conn = null;
+    header("Refresh: 0; URL=$pagina_anterior");
     echo'<script type="text/javascript">
         alert("No se específico que artículo borrar");
         </script>';
-    header("Refresh: 0; URL=$pagina_anterior");
+    die();
 }
 
 function BorrarDirectorio($directorio){
