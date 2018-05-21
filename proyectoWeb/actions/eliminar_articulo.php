@@ -3,7 +3,7 @@ session_start();
 $pagina_anterior = $_SERVER['HTTP_REFERER'];
 require_once "conexion.php";
 require "verificar_rol_admin.php";
-if(isset($_GET['id']) && $_GET['id'] !== null){
+if(isset($_GET['id'])){
     $id = (int)$_GET['id'];
     $sqlbuscar = "SELECT * FROM estilo WHERE estilo.codigo_producto=".$id;
     $result = $conn->query($sqlbuscar);
@@ -22,17 +22,15 @@ if(isset($_GET['id']) && $_GET['id'] !== null){
     $stmt = $conn->exec($sqldelete);
     $conn = null;
     header("Refresh: 0; URL=$pagina_anterior");
-    echo'<script type="text/javascript">
+    exit('<script type="text/javascript">
         alert("Artículo eliminado exitosamente");
-        </script>';
-    die();
+        </script>');
 }else{
     $conn = null;
     header("Refresh: 0; URL=$pagina_anterior");
-    echo'<script type="text/javascript">
+    exit('<script type="text/javascript">
         alert("No se específico que artículo borrar");
-        </script>';
-    die();
+        </script>');
 }
 
 function BorrarDirectorio($directorio){

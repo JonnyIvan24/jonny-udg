@@ -164,7 +164,7 @@ $rols = $stmt->fetchAll();
                                 }
                                 ?>
                                 <li><input type="reset" value="Borrar datos" class="alt" /></li>
-                                <li><a class="button" href="<?php if (isset($pagina_anterior)){ echo $pagina_anterior;}?>">Regresar</a></li>
+                                <li><a class="button" href="usuarios.php">Regresar</a></li>
                             </ul>
                         </div>
                         <p><span class="required">*</span> Campos obligatorios</p>

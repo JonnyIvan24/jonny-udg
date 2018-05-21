@@ -58,7 +58,8 @@ require "../sections/nav_pages.php";
                         <div class="4u 12u$(xsmall)">
                             <h4 for="codigo"><span class="required">*</span> Código:</h4>
                             <input name="codigo" id="codigo" type="text" placeholder="Código del articulo..." size="30"
-                            <?php if (isset($articulo)) echo 'value="'.$articulo['codigo_producto'].'"';?><br>
+                            <?php if (isset($articulo)) echo 'value="'.$articulo['codigo_producto'].'"';?> onkeyup="verificar_codigo()">
+                            <p><span class="required" id="existe_codigo"></span></p>
                         </div>
                         <div class="4u 12u$(xsmall)">
                             <h4 for="talla"><span class="required">*</span> Talla:</h4>
@@ -116,6 +117,23 @@ require "../sections/nav_pages.php";
             </div>
         </div>
     </div>
+    <script type="text/javascript">
+        function verificar_codigo() {
+            var codigo = parseInt(document.getElementById("codigo").value);
+            if (!isNaN(codigo)){
+                $.ajax({
+                    data:{
+                        "codigo1" : $("#codigo").val()
+                    },
+                    type: 'post',
+                    url: '../actions/codigo_existe.php',
+                    success:function (response) {
+                        $('#existe_codigo').html(response);
+                    }
+                });
+            }
+        }
+    </script>
 </section>
 <?php
 require "../sections/footer_pages.php";

@@ -48,6 +48,7 @@ echo('
         <nav id="menu">
             <ul class="links">
                 <li><a href="../index.php">Inicio</a>
+                <li><a href="../pages/productos.php">Productos</a></li>
                 <li class="desplegar"><a class="formulario" href="#submenu">Marca</a>
                     <ul class="submenu">
                         <li><a href="">New Era</a> </li>

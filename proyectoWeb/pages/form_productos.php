@@ -41,7 +41,7 @@ $generos = $result->fetchAll();
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/main.css" />
     <link rel="stylesheet" href="../css/estilos_proyecto.css"/>
-    <script src="../js/jquery.js"></script>
+
 </head>
 <?php
 require "../sections/nav_pages.php";
@@ -55,7 +55,10 @@ require "../sections/nav_pages.php";
                     <p>Captura de productos</p><br>
                     <h2>Producto "SKU"</h2>
                 </header>
-                <form action="../actions/crear_producto.php" method="post" enctype="multipart/form-data">
+                <form <?php if (isset($producto))
+                    echo 'action="../actions/actualizar_producto.php?sku='.$producto['sku'].'"' ; else
+                        echo 'action="../actions/crear_producto.php"';
+                    ?> method="post" enctype="multipart/form-data">
                     <!--formulario-->
                     <div class="row uniform">
                         <div class="4u 12u$(xsmall)">
@@ -124,7 +127,7 @@ require "../sections/nav_pages.php";
                         <div class="4u 12u$(xsmall)">
                             <h4 for="preciov"><span class="required">*</span> Precio de venta:</h4>
                             <input name="precio_v" id="precio_v" type="text" placeholder="Precio de venta..."
-                                <?php if (isset($producto)) echo 'value="$ '.$producto['precio_venta_actual'].'"';?>><br>
+                                <?php if (isset($producto)) echo 'value="'.$producto['precio_venta_actual'].'"';?>><br>
                         </div>
                         <div class="12u 12u$(xsmall)">
                             <h4 for="desc"><span class="required">*</span> Descripción:</h4>
@@ -193,16 +196,19 @@ require "../sections/nav_pages.php";
     </div>
     <script type="text/javascript">
         function verificar_sku() {
-            $.ajax({
-                data:{
-                    "sku1" : $("#sku").val()
-                },
-                type: 'post',
-                url: '../actions/sku_existe.php',
-                success:function (response) {
-                    $('#existe_sku').html(response);
-                }
-            });
+            var sku = parseInt(document.getElementById("sku").value);
+            if (!isNaN(sku)){
+                $.ajax({
+                    data:{
+                        "sku1" : $("#sku").val()
+                    },
+                    type: 'post',
+                    url: '../actions/sku_existe.php',
+                    success:function (response) {
+                        $('#existe_sku').html(response);
+                    }
+                });
+            }
         }
     </script>
 </section>

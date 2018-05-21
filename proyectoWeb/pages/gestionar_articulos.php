@@ -7,7 +7,7 @@ if (isset($_SERVER['HTTP_REFERER'])){
 require "../actions/verificar_rol_admin.php";
 $result = "";
 $sql = 'SELECT P.sku, P.nombre, P.precio_venta_actual, m.marca, c2.categoria, g.genero
-FROM producto P INNER JOIN marca m ON P.id_marca = m.id_marca INNER JOIN categoria c2 ON P.id_categoria = c2.id_categoria INNER JOIN genero g ON P.id_genero = g.id_genero';
+FROM producto P INNER JOIN marca m ON P.id_marca = m.id_marca INNER JOIN categoria c2 ON P.id_categoria = c2.id_categoria INNER JOIN genero g ON P.id_genero = g.id_genero ORDER BY P.nombre';
 $stmt = $conn->query($sql);
 $total_filas = $stmt->rowCount();
 $productos = $stmt->fetchAll();
@@ -27,7 +27,7 @@ $productos = $stmt->fetchAll();
     <script src="../js/valida_usuario.js"></script>
     <script id="conf">
         function confirm1(nombre) {
-            return confirm("¿Estas seguro de querer borrar el articulo " + nombre + "?") == true;
+            return confirm("¿Estas seguro de querer borrar el producto " + nombre + "?") == true;
         }
     </script>
 </head>
@@ -71,7 +71,7 @@ require "../sections/nav_pages.php";
                             <td>
                             <button type="button" class="btn btn-info">Detalles</button>
                             <a href="form_productos.php?sku='.$producto['sku'].'"><button type="button" class="btn btn-success">Editar</button></a>
-                            <a href="../actions/eliminar_productos.php?sku='.$producto['sku'].'"><button type="button" class="btn btn-danger" 
+                            <a href="../actions/eliminar_producto.php?sku='.$producto['sku'].'"><button type="button" class="btn btn-danger" 
                             onclick="return confirm1('.$producto['sku'].');"
                             >Eliminar</button></a>
                             </td>
