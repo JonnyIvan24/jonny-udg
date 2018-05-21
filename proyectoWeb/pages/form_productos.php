@@ -41,6 +41,7 @@ $generos = $result->fetchAll();
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/main.css" />
     <link rel="stylesheet" href="../css/estilos_proyecto.css"/>
+    <script src="../js/jquery.js"></script>
 </head>
 <?php
 require "../sections/nav_pages.php";
@@ -60,7 +61,9 @@ require "../sections/nav_pages.php";
                         <div class="4u 12u$(xsmall)">
                             <h4 for="sku"><span class="required">*</span> SKU:</h4>
                             <input name="sku" id="sku" type="text" placeholder="SKU..." size="30"
-                                <?php if (isset($producto)) echo 'value="'.$producto['sku'].'"';?>><br>
+                                <?php if (isset($producto)) echo 'disabled value="'.$producto['sku'].'"';?> onkeyup="verificar_sku()">
+                            <p><span id="existe_sku" class="required"></span></p>
+                            <br>
                         </div>
                         <div class="4u 12u$(xsmall)">
                             <h4 for="categoria"><span class="required">*</span> Categoría:</h4>
@@ -188,6 +191,20 @@ require "../sections/nav_pages.php";
             </div>
         </div>
     </div>
+    <script type="text/javascript">
+        function verificar_sku() {
+            $.ajax({
+                data:{
+                    "sku1" : $("#sku").val()
+                },
+                type: 'post',
+                url: '../actions/sku_existe.php',
+                success:function (response) {
+                    $('#existe_sku').html(response);
+                }
+            });
+        }
+    </script>
 </section>
 <?php
 require "../sections/footer_pages.php";
