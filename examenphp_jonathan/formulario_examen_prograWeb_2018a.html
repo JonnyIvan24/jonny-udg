@@ -1,0 +1,99 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Programacion de Formularios 2018a con PHP y MySQL (Examen) Jonathan</title>
+<style type="text/css">
+#contenedor {
+  width: 960px;
+  margin: 0 auto;
+}
+
+#menu{
+	width:18%;
+	float:left;
+	background-color:#8D8D8D;
+	height:370px;;
+	}
+	
+#formulario {
+	width:58%;
+	float:left;
+	background-color:#CCC;
+	margin:5px;
+	}
+	
+#lateral{
+	width:18%;
+	float:left;
+	background-color:#8D8D8D;
+	height:370px;
+	}
+
+</style>
+<script language="javascript">
+  <!--
+      //Escribir el código necesario de JavaScript para validar todos los objetos de este
+	  //formulario web ******************************************************************
+	  function ValidarForm2018a_PHP()
+	  {
+		 
+
+
+	  }
+  //-->
+</script>
+    <script src="js/validar_datos.js"></script>
+</head>
+<body style="background-color:#000000;">
+<div id="contenedor">
+<h2 style="color:#FBFBFB;">Formulario de registro de nuevas bicicletas</h2>
+  <div id="menu">Aqui va el menu de navegación</div>
+        <div id="formulario" align="left">
+        <form method="post" action="php/grabar_bici2018a.php" id="formulario_bicis2018a" onsubmit="return validar_bici();">
+        <fieldset>
+        <legend></legend>
+        <legend></legend>
+        <legend></legend>
+        <legend>Datos de la bicicleta a registrar en la agencia:</legend>
+        <p><br />
+          Nombre de la Bicicleta (Modelo):
+          <input type="text" name="txtBici" id="txtBici" size="40">
+        <br />
+        <br />
+        
+        Marca:<!-- Caja de Selección o ComboBox -->
+        <select name="combo_marca" id="combo_marca">
+          <option value="00">-- Selecciona una marca --</option>
+          <option value="Norco">Norco</option>
+          <option value="Turbo">Turbo</option>
+          <option value="Specialized">Specialized</option>
+          <option value="TREK">TREK</option>
+          <option value="Bimex">Bimex</option>
+          <option value="Belfort">Belfort</option>
+          <option value="Generica">Generica</option>
+        </select>
+         
+        <br />
+        <br />
+         Tipo de Material: (Escribe si es de aluminio, carbono o acero)<br />
+        <input type="text" name="txtMaterial" id="txtMaterial" size="40">
+        <br />
+        <br />
+        Escribe los accesorios extra que trae esta bici (Separados por coma): <br />
+         <input type="text" name="txtAccesorios" id="txtAccesorios" size="40">
+        <br>
+        <br>
+        <input type="submit" value="   Grabar Datos de la Bici   " id="btn_registrar" />
+        </p>
+        <p><br>
+        </p>
+            <a href="reporte_general_bicicletas.php">Reporte general</a>
+        
+        </fieldset>
+        </form>
+        </div>
+	<div id="lateral">Aqui va el lateral</div>
+</div>
+</body>
+</html>

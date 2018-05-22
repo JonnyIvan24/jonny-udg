@@ -1,16 +1,28 @@
 <?php
 session_start();
 require_once "../actions/conexion.php";
-$sql = "SELECT P.*, M.*, C.*, G.* FROM producto P INNER JOIN marca M ON P.id_marca = M.id_marca
-INNER JOIN categoria C ON P.id_categoria = C.id_categoria
-INNER JOIN genero G ON P.id_genero = G.id_genero";
-$stmt = $conn->query($sql);
-$totalrows = $stmt->rowCount();
-$productos = $stmt->fetchAll();
-$sqlarticulos = "SELECT * FROM estilo";
-$stmt = $conn->query($sqlarticulos);
-$articulos = $stmt->fetchAll();
-
+if (isset($_GET['sku'])){
+    $sku = (int)$_GET['sku'];
+    $sql = "SELECT P.*, M.*, C.*, G.*, E.* FROM producto P INNER JOIN marca M ON P.id_marca = M.id_marca
+INNER JOIN categoria C ON P.id_categoria = C.id_categoria INNER JOIN estilo E ON P.sku = E.sku
+INNER JOIN genero G ON P.id_genero = G.id_genero WHERE P.sku=".$sku;
+    $stmt = $conn->query($sql);
+    $totalrows = $stmt->rowCount();
+    if ($totalrows <= 0 ){ // si no existe el sku
+        $conn = null;
+        header("Location: productos.php");
+        exit();
+    }
+    $productos = $stmt->fetchAll();
+    $sqlarticulos = "SELECT * FROM producto WHERE producto.sku=".$sku;
+    $stmt = $conn->query($sqlarticulos);
+    $nombres = $stmt->fetchAll();
+    foreach ($nombres as $nombre){}
+}else{
+    $conn = null;
+    header("Location: productos.php");
+    exit();
+}
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -34,7 +46,7 @@ require "../sections/nav_pages.php";
     <div class="inner">
         <header class="align-center">
             <p>Store Caps & Sneakers</p>
-            <h2>Productos</h2>
+            <h2><?php echo utf8_encode($nombre['nombre']); ?></h2>
         </header>
     </div>
 </section>
@@ -43,26 +55,34 @@ require "../sections/nav_pages.php";
     <div class="inner">
         <div class="box">
             <div class="content">
+                <header class="align-center">
+                    <p><b><?php echo utf8_decode($nombre['descripcion'])?></b></p>
+                </header><br>
                 <div class="gallery">
                     <?php
                     foreach ($productos as $producto){
-                        foreach ($articulos as $articulo){
-                            if ($producto['sku']==$articulo['sku'])
-                                break;
-                        }
                         echo ('
                 <div>
                     <div class="image fit align-center">
-                        <a href="articulos_producto.php?sku='.$producto['sku'].'"><img src="'.$articulo['ruta'].$articulo['imagen'].'" alt="" width="300" height="300" /></a>
+                        <a href="articulos_producto.php?sku='.$producto['sku'].'"><img src="'.$producto['ruta'].$producto['imagen'].'" alt="" width="300" height="300" /></a>
                             <p>
                             <b>'.utf8_decode($producto['nombre']).'</b><br>
                             <b>Precio:</b> $'.$producto['precio_venta_actual'].'<br>
                             <b>Marca:</b> '.utf8_decode($producto['marca']).'<br>
                             <b>Categoría:</b> '.utf8_decode($producto['categoria']).'<br>
-                            <b>Genero:</b> '.utf8_decode($producto['genero']).'<br>
-                            </p>
+                            <b>Genero:</b> '.utf8_decode($producto['genero']).'<br>');
+                        if ($producto['stock']<=0){// sin stock
+                            echo ('<b></b><br>');
+                        }else if ($producto['stock']<=1){// bajo de stock
+                            echo('');
+                        }
+                            echo ('</p>
                             <footer class="align-center">
-								<a href="articulos_producto.php?sku='.$producto['sku'].'" class="button alt">Más detalles</a>
+                                <input class="button special" value="Comprar"');
+                        if ($producto['stock']<= 0) {
+                            echo 'disabled';
+                        }
+                        echo ('>
 							</footer>
                     </div>
                 </div>

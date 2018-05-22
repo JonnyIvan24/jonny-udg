@@ -131,15 +131,19 @@ require "../sections/nav_pages.php";
                         </div>
                         <div class="12u 12u$(xsmall)">
                             <h4 for="desc"><span class="required">*</span> Descripción:</h4>
-                            <textarea name="desc" id="desc"  placeholder="Descripción..."><?php if (isset($producto)) echo $producto['descripcion'];?></textarea><br><br>
+                            <textarea name="desc" id="desc"  placeholder="Descripción..."><?php if (isset($producto)) echo $producto['descripcion'];?></textarea><br>
                         </div>
                         <!-- submit -->
                         <div class="12u$">
+                            <p><span class="required">*</span> Campos obligatorios</p>
                             <ul class="actions">
                                 <li><input type="submit" value="Grabar datos" class="button special" /></li>
-                                <li><a class="button" href="gestionar_articulos.php">Regresar</a></li>
+                                <?php
+                                if (!isset($total_filas)){
+                                    echo '<li><a class="button" href="gestionar_articulos.php">Regresar</a></li>';
+                                }
+                                ?>
                             </ul>
-                            <p><span class="required">*</span> Campos obligatorios</p>
                         </div>
                     </div>
                 </form>
@@ -186,6 +190,7 @@ require "../sections/nav_pages.php";
                         echo'<h3>No hay artículos</h3>';
                     }
                     echo '<a href="form_articulo.php?sku='.$producto['sku'].'" class="button special big">Agregar</a>
+<a class="button big" href="gestionar_articulos.php">Regresar</a>
                     </header>';
 
                 }

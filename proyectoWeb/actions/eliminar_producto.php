@@ -11,7 +11,7 @@ if(isset($_GET['sku'])) {
     if ($articulos > 0){// si el producto tiene articulos relacionados
         header("Refresh: 0; URL=../pages/gestionar_articulos.php");
         exit('<script type="text/javascript">
-        alert("No se puede borrar el producto por que tiene articulos relacionados con el");
+        alert("No se puede borrar el producto por que tiene articulos relacionados con él");
         </script>');
     }else{
         $sqldelete = "DELETE FROM producto WHERE producto.sku=".$sku;
