@@ -93,6 +93,7 @@ require "../sections/nav_pages.php";
                 </div>
                 <header class="align-center">
                     <a href="productos.php" class="button big">regresar</a>
+                    <?php //echo json_encode($_SESSION['cart']);?>
                 </header>
             </div>
         </div>
@@ -103,7 +104,7 @@ require "../sections/nav_pages.php";
             if (!isNaN(id)){
                 $.ajax({
                     data:{
-                        "id" : $("#id").val()
+                        "id" : id
                     },
                     type: 'post',
                     url: '../actions/agregar_carrito.php',

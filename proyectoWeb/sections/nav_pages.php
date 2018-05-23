@@ -10,13 +10,20 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true){
     echo ('<a href="#login">Iniciar sesión</a>');
 }
 echo('
-                <a href="#"><img src="../images/config/cart.png"><span id="num_carrito">(0)</span></a>
+                <a href="../pages/carrito_compras.php"><img src="../images/config/cart.png"><span id="num_carrito">
+                ');
+if (isset($_SESSION['num_art'])){
+    echo ('('.$_SESSION['num_art'].')');
+}else{
+    echo ('(0)');
+}
+echo ('</span></a>
                 <a href="#menu">Menu</a>
 			</header>
         <!-- Nav -->
         <nav id="login">
          ');
-if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
+if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {//sesion iniciada
     echo ('<ul class="links">
                         <li><a href="../pages/form_usuario.php?id='.$_SESSION['id'].'">Editar perfil</a></li>
                         <li><a href="../actions/cerrar_sesion.php">Cerrar sesión</a></li>');
@@ -30,7 +37,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
     }
     echo ('</ul>');
 }else{
-    echo('<form class="dropdown-menu p-4" method = "post" action = "../actions/iniciar_sesion.php" onsubmit = "" >
+    echo'<form  method = "post" action = "../actions/iniciar_sesion.php" onsubmit = "" >
                 <div class="form-group" >
                     <label for="email" > E-mail</label >
                     <input type = "email" class="form-control" name = "email" id = "email" placeholder = "email@ejemplo.com" >
@@ -41,7 +48,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
                 </div ><br >
                 <button type = "submit" class="button special" > Ingresar</button ><p ></p >
                 <a href = "../pages/form_usuario.php?iniciar=i" ><button type = "button" class="button alt" > Registrarse</button ><a >
-            </form >');
+            </form >';
 }
 echo('
         </nav>
