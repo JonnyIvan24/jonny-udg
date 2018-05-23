@@ -1,4 +1,4 @@
-function validar_usuario() {
+function validar_usuario_rol() {
     var nombre = document.getElementById("nombre").value;
     var apaterno = document.getElementById("apaterno").value;
     var amaterno = document.getElementById("amaterno").value;
@@ -6,6 +6,7 @@ function validar_usuario() {
     var pass = document.getElementById("pass1").value;
     var telefono = document.getElementById("telefono").value;
     var fecha_nac = document.getElementById("fecha_nac").value;
+    var rol = document.getElementById("rol").value;
 
     if (nombre.length == 0 || nombre == null || /^\s+$/.test(nombre)) {
         alert("Favor de escribir el(los) nombre(s)");
@@ -39,7 +40,10 @@ function validar_usuario() {
         alert("Favor de escribir la fecha de nacimiento");
         document.getElementById("fecha_nac").focus();
         return false;
-    }else {
-        return true;
+    }else if (rol.length == 0 || rol == null || /^\s+$/.test(rol)) {
+        alert("Favor de escoger un rol");
+        document.getElementById("rol").focus();
+        return false;
     }
+    return true;
 }

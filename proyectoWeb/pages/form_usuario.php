@@ -63,6 +63,7 @@ $rols = $stmt->fetchAll();
         }
     </script>
     <script src="../js/valida_usuario.js"></script>
+    <script src="../js/validacion_usuario_rol.js"></script>
 </head>
 <?php require "../sections/nav_pages.php"; ?>
     <!-- One -->
@@ -79,10 +80,11 @@ $rols = $stmt->fetchAll();
     <section id="two" class="wrapper style2">
         <div class="inner">
             <div class="box">
-                <form class="content" method="post" onsubmit="return validar_usuario();" id="form_usuario"
-                    <?php if (isset($usuario)){echo ('action="../actions/actualizar_usuario.php?id='.$usuario['id_usuario'].'"');
-                    }else if (isset($iniciar)){echo ('action="../actions/agregar_iniciar_usuario.php"');
-                    }else{echo ('action="../actions/agregar_usuario.php"');}
+                <form class="content" method="post"  id="form_usuario"
+                    <?php if (isset($usuario)){echo ('action="../actions/actualizar_usuario.php?id='.$usuario['id_usuario'].'" onsubmit="return validar_usuario();"');
+                    }else if($_SESSION['rol']==2){echo 'action="../actions/actualizar_usuario.php?id='.$usuario['id_usuario'].'" onsubmit="return validar_usuario_rol();"';
+                    } else if (isset($iniciar)){echo ('action="../actions/agregar_iniciar_usuario.php" onsubmit="return validar_usuario();"');
+                    }else{echo ('action="../actions/agregar_usuario.php" onsubmit="return validar_usuario_rol();"');}
                     ?>>
                     <header class="align-center">
                         <p>Formulario</p>
@@ -143,7 +145,7 @@ $rols = $stmt->fetchAll();
                         <div class="12u$">
                             <div class="4u 12u$(small)">
                                 <h4 for="Fecha de nacimiento"><span class="required">*</span>Fecha:</h4>
-                                <input name="fecha_nac" id="datepicker" type="text" data-provide="datepicker" placeholder="Fecha de nacimiento..." value="<?php if (isset($usuario)){ echo $usuario['fecha_nac'];} ?>"><br>
+                                <input name="fecha_nac" id="fecha_nac" type="date" data-provide="datepicker" placeholder="Fecha de nacimiento..." value="<?php if (isset($usuario)){ echo $usuario['fecha_nac'];} ?>"><br>
                             </div>
                         </div>
                         <?php

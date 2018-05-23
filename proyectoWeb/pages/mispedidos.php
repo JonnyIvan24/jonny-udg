@@ -1,10 +1,5 @@
 <?php
 session_start();
-if (isset($_SERVER['HTTP_REFERER'])){
-    $pagina_anterior = $_SERVER['HTTP_REFERER'];
-}else{
-    $pagina_anterior = "../index.php";
-}
 if (!isset($_SESSION['id'])){
     $conn = null;
     header("Refresh: 0; URL=../index.php");
@@ -49,6 +44,13 @@ require "../sections/nav_pages.php";
     <div class="inner">
         <div class="box">
             <div class="content">
+                <header class="align-center">
+                    <?php
+                    if ($totalpedidos<=0){
+                        echo "<p><b><span class='required'>No tienes compras</span></b></p><br><br>";
+                    }
+                    ?>
+                </header>
                 <!--tabla-->
                 <div class="row uniform">
                     <div class="table-wrapper 6u 12u$(xsmall)">
@@ -95,15 +97,11 @@ require "../sections/nav_pages.php";
                 </div>
                 <div class="row uniform">
                 <header class="align-center">
-                    <?php
-                    if ($totalpedidos<=0){
-                        echo "<p><b><span class='required'>No tienes compras</span></b></p>";
-                    }
-                    ?>
-                    <br><a href="<?php echo $pagina_anterior;?>"><button type="button" class="button special big">Regresar</button></a>
+                    <br><a href="<?php echo "../index.php";?>"><button type="button" class="button special big">Regresar</button></a>
                 </header>
                 </div>
         </div>
+
     </div>
         <script type="text/javascript">
             function mostrar_detalles(pedido) {
