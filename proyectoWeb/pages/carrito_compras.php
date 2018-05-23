@@ -2,6 +2,8 @@
 session_start();
 if (isset($_SERVER['HTTP_REFERER'])){
     $pagina_anterior = $_SERVER['HTTP_REFERER'];
+}else{
+    $pagina_anterior = "productos.php";
 }
 if (!isset($_SESSION['num_art'])){//si no esta seteada la variable cart
     if(isset($pagina_anterior)){
@@ -26,18 +28,6 @@ if (!isset($_SESSION['num_art'])){//si no esta seteada la variable cart
 }
 
 require_once "../actions/conexion.php";
-// tratar de manera diferente desde el archivo agregar_carrito.php
-foreach ($_SESSION['cart'] as $item){
-    echo json_encode($item['id']);
-    $sqlcarrito = "SELECT P.*, M.*, C.*, G.*, E.*, T.* FROM producto P INNER JOIN marca M ON P.id_marca = M.id_marca
-INNER JOIN categoria C ON P.id_categoria = C.id_categoria INNER JOIN estilo E ON P.sku = E.sku
-INNER JOIN genero G ON P.id_genero = G.id_genero INNER JOIN talla T ON E.id_talla = T.id_talla WHERE P.sku={$item['id']}";
-    $result = $conn->query($sqlcarrito);
-    $p = $result->fetchAll();
-    $productos[$item['id']] = array(
-        "articulo" => $p
-    );
-}
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -69,28 +59,46 @@ require "../sections/nav_pages.php";
 <section id="two" class="wrapper style2">
     <div class="inner">
         <div class="box">
+            <header class="align-center">
+                <a href="<?php echo $pagina_anterior; ?>" class="button big">Seguir comprando</a><br>
+            </header>
             <div class="content">
                 <!--tabla-->
                 <div class="table-wrapper">
                     <table>
                         <thead>
                         <tr>
-                            <th>SKU</th>
                             <th>Nombre</th>
-                            <th>Marca</th>
-                            <th>Categoria</th>
+                            <th>Talla</th>
                             <th>Género</th>
+                            <th>Color</th>
                             <th>Precio Venta</th>
-                            <th>Acciones</th>
+                            <th>Cantidad</th>
+                            <th>Importe</th>
                         </tr>
                         </thead>
                         <tbody>
                         <?php
-                            foreach ($productos as $producto){
-
-                                echo json_encode($producto['articulo']['sku']);
-                            }
+                        $suma = 0.0;
+                        foreach ($_SESSION['cart'] as $item) {
+                            $suma = $suma+(float)$item['articulo']['precio_venta_actual']*(int)$item['quantity'];
+                            echo '<tr>
+                            <td>'.utf8_encode($item['articulo']['nombre']).'</td>
+                            <td>'.utf8_encode($item['articulo']['talla']).'</td>
+                            <td>'.utf8_encode($item['articulo']['genero']).'</td>
+                            <td>'.utf8_encode($item['articulo']['color']).'</td>
+                            <td>$ '.$item['articulo']['precio_venta_actual'].'</td>
+                            <td>'.$item['quantity'].'</td>
+                            <td>$ '.(float)$item['articulo']['precio_venta_actual']*(int)$item['quantity'].'</td>
+                                    </tr>';
+                        }
                         ?>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="6" class="align-right">Total</td>
+                                    <td>$<?php echo $suma; ?></td>
+                                </tr>
+                            </tfoot>
                         </tbody>
                     </table>
                     <header class="align-center">
@@ -98,7 +106,7 @@ require "../sections/nav_pages.php";
 
 
                         ?>
-                        <a href="form_productos.php" class="button special big">Agregar</a>
+                        <a href="../actions/crearpedido.php" class="button special big">Comprar todo</a>
                     </header>
                 </div>
             </div>

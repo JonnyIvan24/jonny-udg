@@ -12,21 +12,28 @@ if (isset($_POST['id'])){
         $numero = "(".$_SESSION['num_art'].")";
         echo $numero;
     }else{// se agrega un articulo nuevo al carrito
-        $sql = "SELECT * FROM estilo WHERE estilo.codigo_producto = {$id}";
+        $sql = "SELECT P.*, M.*, C.*, G.*, E.*, T.* FROM producto P INNER JOIN marca M ON P.id_marca = M.id_marca
+INNER JOIN categoria C ON P.id_categoria = C.id_categoria INNER JOIN estilo E ON P.sku = E.sku
+INNER JOIN genero G ON P.id_genero = G.id_genero INNER JOIN talla T ON E.id_talla = T.id_talla WHERE E.codigo_producto={$id}";
         $result = $conn->query($sql);
         $total_rows = $result->rowCount();
-        if ($total_rows >= 0){// si encuentra el articulo
-            $_SESSION['num_art']++;// se incrementa la cantidad de los articulos
-            $_SESSION['cart'][$id]=array(
-                "id"=> $id,
-                "quantity" => 1
-            );
-            $numero = "(".$_SESSION['num_art'].")";
-            echo $numero;
-        }else{// si no encuentra el articulo
-            $conn = null;
-            header("Location: ../pages/productos.php");
-            exit();
+        ///////////////
+        $productos = $result->fetchAll();
+        foreach ($productos as $producto) {
+            if ($total_rows >= 0) {// si encuentra el articulo
+                $_SESSION['num_art']++;// se incrementa la cantidad de los articulos
+                $_SESSION['cart'][$id] = array(
+                    "id" => $id,
+                    "quantity" => 1,
+                    "articulo" => $producto
+                );
+                $numero = "(" . $_SESSION['num_art'] . ")";
+                echo $numero;
+            } else {// si no encuentra el articulo
+                $conn = null;
+                header("Location: ../pages/productos.php");
+                exit();
+            }
         }
     }
 }else{
