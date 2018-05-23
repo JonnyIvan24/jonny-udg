@@ -32,6 +32,7 @@ echo('
             <script src="../js/util.js"></script>
             <script src="../js/main.js"></script>
             <script src="../js/jquery.js"></script>
+            <script src="../js/validar_inicio_sesion.js"></script>
             <script type="text/javascript">
         $(function () {
             $(\'#datetimepicker10\').datetimepicker({

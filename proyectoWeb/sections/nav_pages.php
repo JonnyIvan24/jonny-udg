@@ -26,7 +26,7 @@ echo ('</span></a>
 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {//sesion iniciada
     echo ('<ul class="links">
                         <li><a href="../pages/form_usuario.php?id='.$_SESSION['id'].'">Editar perfil</a></li>
-                        <li><a href="../actions/cerrar_sesion.php">Cerrar sesión</a></li>');
+                        <li><a href="../pages/mispedidos.php">Mis compras</a></li>');
     if ($_SESSION['rol'] == 2){
         echo('<li class="desplegar"><a class="formulario" href="#submenu">ADMINISTRACIÓN </a>
                             <ul class="submenu">
@@ -35,9 +35,9 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {//sesion ini
                                 <li><a href="../pages/usuarios.php">Usuarios</a> </li>
                             </ul></li>');
     }
-    echo ('</ul>');
+    echo ('<li><a href="../actions/cerrar_sesion.php">Cerrar sesión</a></li></ul>');
 }else{
-    echo'<form  method = "post" action = "../actions/iniciar_sesion.php" onsubmit = "" >
+    echo'<form  method = "post" action = "../actions/iniciar_sesion.php" onsubmit = "return validar_inicio();" >
                 <div class="form-group" >
                     <label for="email" > E-mail</label >
                     <input type = "email" class="form-control" name = "email" id = "email" placeholder = "email@ejemplo.com" >

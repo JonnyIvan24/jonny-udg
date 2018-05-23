@@ -102,11 +102,7 @@ require "../sections/nav_pages.php";
                         </tbody>
                     </table>
                     <header class="align-center">
-                        <?php
-
-
-                        ?>
-                        <a href="../actions/crearpedido.php" class="button special big">Comprar todo</a>
+                        <a href="../actions/crear_pedido.php" class="button special big">Comprar todo</a>
                     </header>
                 </div>
             </div>

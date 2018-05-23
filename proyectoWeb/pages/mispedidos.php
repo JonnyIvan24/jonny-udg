@@ -1,10 +1,20 @@
 <?php
 session_start();
+if (isset($_SERVER['HTTP_REFERER'])){
+    $pagina_anterior = $_SERVER['HTTP_REFERER'];
+}else{
+    $pagina_anterior = "../index.php";
+}
+if (!isset($_SESSION['id'])){
+    $conn = null;
+    header("Refresh: 0; URL=../index.php");
+    exit('<script type="text/javascript">
+     alert("Inicie sesión");
+     </script>');
+}
 require_once "../actions/conexion.php";
-$sqlpedido = "SELECT * FROM pedido p2 ON dp.folio_pedido = p2.folio_pedido
-INNER JOIN usuario u ON p2.id_usuario = u.id_usuario WHERE u.id_usuario={$_SESSION['id']}";
-echo $sql;
-$result = $conn->query($sql);
+$sqlpedido = "SELECT * FROM pedido p2 INNER JOIN usuario u ON p2.id_usuario = u.id_usuario WHERE u.id_usuario={$_SESSION['id']}";
+$result = $conn->query($sqlpedido);
 $pedidos = $result->fetchAll();
 $totalpedidos = $result->rowCount();
 ?>
@@ -40,49 +50,78 @@ require "../sections/nav_pages.php";
         <div class="box">
             <div class="content">
                 <!--tabla-->
-                <div class="table-wrapper">
-                    <table>
-                        <thead>
-                        <tr>
-                            <th>Folio</th>
-                            <th>Fecha</th>
-                            <th>Articulo</th>
-                            <th>Total</th>
-                            <th>Estado</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <?php
-                        foreach ($pedidos as $pedido){
-                            foreach ($productos as $producto){
-                                echo '<tr>
-                            <td>'.$pedido['folio_pedido'].'</td>
-                            <td>'.date("d",$producto['fecha']).'</td>
-                            <td>'.$producto['marca'].'</td>
-                            <td>'.$producto['categoria'].'</td>
-                            <td>'.$producto['genero'].'</td>
-                            <td>$'.$producto['precio_venta_actual'].'</td>
-                            <td>
-                            <button type="button" class="btn btn-info">Detalles</button>
-                            <a href="form_productos.php?sku='.$producto['sku'].'"><button type="button" class="btn btn-success">Editar</button></a>
-                            <a href="../actions/eliminar_producto.php?sku='.$producto['sku'].'"><button type="button" class="btn btn-danger" 
-                            onclick="return confirm1('.$producto['sku'].');"
-                            >Eliminar</button></a>
-                            </td>
-                        </tr>';
-                        }
-                        ?>
-                        </tbody>
-                    </table>
-                    <header class="align-center">
-                        <?php
+                <div class="row uniform">
+                    <div class="table-wrapper 6u 12u$(xsmall)">
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>Folio</th>
+                                <th>Fecha</th>
+                                <th>Total</th>
+                                <th>Estado</th>
+                                <th>Acción</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <?php
+                                foreach ($pedidos as $pedido) {if($pedido['status']== 1){
+                                    $status = "En Proceso";
+                                }else if($pedido['status']== 0){
+                                    $status = "Cancelada";
+                                }else if($pedido['status']== 2){
+                                    $status = "Pagada";
+                                }else if($pedido['status']== 3) {
+                                    $status = "Completada";
+                                }else {
+                                    $status = "En conflicto";
+                                }
+                                    echo '<tr>
+                                <td>' . $pedido['folio_pedido'] . '</td>
+                                <td>' . date("d/m/y", strtotime( $pedido['fecha'])). '</td>
+                                <td>$ ' . $pedido['total'] . '</td>
+                                <td>' . $status . '</td>
+                                <td><button type="button" class="btn btn-info" onclick="mostrar_detalles('.$pedido['folio_pedido'].')">Detalles</button></td>
+                            </tr>';
+                                }
+                            ?>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="table-wrapper 6u 12u$(xsmall)">
+                        <table id="detalles">
 
-
-                        ?>
-                    </header>
-            </div>
+                        </table>
+                    </div>
+                </div>
+                <div class="row uniform">
+                <header class="align-center">
+                    <?php
+                    if ($totalpedidos<=0){
+                        echo "<p><b><span class='required'>No tienes compras</span></b></p>";
+                    }
+                    ?>
+                    <br><a href="<?php echo $pagina_anterior;?>"><button type="button" class="button special big">Regresar</button></a>
+                </header>
+                </div>
         </div>
     </div>
+        <script type="text/javascript">
+            function mostrar_detalles(pedido) {
+                var id = parseInt(pedido);
+                if (!isNaN(id)){
+                    $.ajax({
+                        data:{
+                            "id" : id
+                        },
+                        type: 'post',
+                        url: '../actions/detalles_pedido.php',
+                        success:function (response) {
+                            $('#detalles').html(response);
+                        }
+                    });
+                }
+            }
+        </script>
 </section>
 <?php
 require "../sections/footer_pages.php";

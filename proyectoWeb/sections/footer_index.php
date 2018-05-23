@@ -31,6 +31,7 @@ echo('
 			<script src="js/util.js"></script>
 			<script src="js/main.js"></script>
             <script src="js/jquery.js"></script>
+            <script src="js/validar_inicio_sesion.js"></script>
 	</body>
 </html>');
 ?>

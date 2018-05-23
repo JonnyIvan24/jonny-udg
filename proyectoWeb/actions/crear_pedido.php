@@ -29,7 +29,7 @@ VALUE ({$idpedido}, {$item['articulo']['codigo_producto']}, {$item['quantity']},
     exit('<script type="text/javascript">
      alert("Compra creada con exito");
      </script>');
-}else{
+}else{// no hay sesion iniciada
     $conn = null;
     header("Refresh: 0; URL=$pagina_anterior");
     exit('<script type="text/javascript">
