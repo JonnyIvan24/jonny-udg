@@ -47,7 +47,21 @@ $rols = $stmt->fetchAll();
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../css/main.css" />
     <link rel="stylesheet" href="../css/estilos_proyecto.css"/>
-
+    <script type="text/javascript">
+        function verificar_email() {
+            //var email = document.getElementById('email').value;
+            $.ajax({
+                data:{
+                    "email" : $("#email").val()
+                },
+                type: 'post',
+                url: '../actions/email_existe.php',
+                success:function (response) {
+                    $('#existe_email').html(response);
+                }
+            });
+        }
+    </script>
     <script src="../js/valida_usuario.js"></script>
 </head>
 <?php require "../sections/nav_pages.php"; ?>
@@ -107,7 +121,8 @@ $rols = $stmt->fetchAll();
                         <div class="12u$">
                             <div class="4u 12u$(small)">
                                 <h4 for="email"><span class="required">*</span>e-Mail:</h4>
-                                <input class="form-control" aria-describedby="emailHelp" name="email" id="email1" type="email" placeholder="nombre@email.com..." size="60" value="<?php if (isset($usuario)){ echo $usuario['email'];} ?>"><br>
+                                <input class="form-control" aria-describedby="emailHelp" name="email" id="email" type="email" placeholder="nombre@email.com..." size="60" value="<?php if (isset($usuario)){ echo $usuario['email'];} ?>" onkeyup="verificar_email()">
+                                <p><span id="existe_email" class="required"></span></p>
                             </div>
                         </div>
 

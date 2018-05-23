@@ -14,13 +14,24 @@ if(isset($_POST['rol']) && $_POST !== null ){
 }else{
     $rol = 1;
 }
-$sqlinsert = "INSERT INTO usuario (nombre, apaterno, amaterno, email, pass, telefono, fecha_nac, id_rol)
+$sqlbuscar = "SELECT * FROM usuario WHERE email = '{$email}'";
+$result = $conn->query($sqlbuscar);
+$rowcount = $result->rowCount();
+echo $rowcount;
+if($rowcount <= 0){
+    $sqlinsert = "INSERT INTO usuario (nombre, apaterno, amaterno, email, pass, telefono, fecha_nac, id_rol)
 VALUE ('$nombre', '$apaterno', '$amaterno', '$email', '$pass', '$telefono', '$fecha', $rol)";
-$stmt = $conn->exec($sqlinsert);
-
-echo'<script type="text/javascript">
+    $stmt = $conn->exec($sqlinsert);
+    $conn = null;
+    header("Refresh: 0; URL=../pages/usuarios.php");
+    exit('<script type="text/javascript">
         alert("Usuario '.$nombre.' agregado correctamente");
-        </script>';
-$conn = null;
-header("Refresh: 0; URL=../pages/usuarios.php");
+        </script>');
+}else{
+    $conn = null;
+    header("Refresh: 0; URL=$pagina_anterior");
+    exit('<script type="text/javascript">
+        alert("Ya existe el e-mail");
+        </script>');
+}
 ?>
