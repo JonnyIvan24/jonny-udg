@@ -52,8 +52,8 @@ require "../sections/nav_pages.php";
                         }
                         echo ('
                 <div>
-                    <div class="image fit align-center">
-                        <a href="articulos_producto.php?sku='.$producto['sku'].'"><img src="'.$articulo['ruta'].$articulo['imagen'].'" alt="" width="300" height="300" /></a>
+                    <div class="8u  align-center">
+                        <span class="image fit"><a href="articulos_producto.php?sku='.$producto['sku'].'"><img src="'.$articulo['ruta'].$articulo['imagen'].'" alt="" height="180" /></a></span>
                             <p>
                             <b>'.utf8_decode($producto['nombre']).'</b><br>
                             <b>Precio:</b> $'.$producto['precio_venta_actual'].'<br>

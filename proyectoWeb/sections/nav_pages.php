@@ -10,7 +10,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true){
     echo ('<a href="#login">Iniciar sesión</a>');
 }
 echo('
-                <a href="#"><img src="../images/config/cart.png"> (0)</a>
+                <a href="#"><img src="../images/config/cart.png"><span id="num_carrito">(0)</span></a>
                 <a href="#menu">Menu</a>
 			</header>
         <!-- Nav -->

@@ -3,9 +3,9 @@ session_start();
 require_once "../actions/conexion.php";
 if (isset($_GET['sku'])){
     $sku = (int)$_GET['sku'];
-    $sql = "SELECT P.*, M.*, C.*, G.*, E.* FROM producto P INNER JOIN marca M ON P.id_marca = M.id_marca
+    $sql = "SELECT P.*, M.*, C.*, G.*, E.*, T.* FROM producto P INNER JOIN marca M ON P.id_marca = M.id_marca
 INNER JOIN categoria C ON P.id_categoria = C.id_categoria INNER JOIN estilo E ON P.sku = E.sku
-INNER JOIN genero G ON P.id_genero = G.id_genero WHERE P.sku=".$sku;
+INNER JOIN genero G ON P.id_genero = G.id_genero INNER JOIN talla T ON E.id_talla = T.id_talla WHERE P.sku=".$sku;
     $stmt = $conn->query($sql);
     $totalrows = $stmt->rowCount();
     if ($totalrows <= 0 ){ // si no existe el sku
@@ -64,21 +64,22 @@ require "../sections/nav_pages.php";
                         echo ('
                 <div>
                     <div class="image fit align-center">
-                        <a href="articulos_producto.php?sku='.$producto['sku'].'"><img src="'.$producto['ruta'].$producto['imagen'].'" alt="" width="300" height="300" /></a>
-                            <p>
-                            <b>'.utf8_decode($producto['nombre']).'</b><br>
-                            <b>Precio:</b> $'.$producto['precio_venta_actual'].'<br>
-                            <b>Marca:</b> '.utf8_decode($producto['marca']).'<br>
-                            <b>Categoría:</b> '.utf8_decode($producto['categoria']).'<br>
-                            <b>Genero:</b> '.utf8_decode($producto['genero']).'<br>');
+                        <img src="'.$producto['ruta'].$producto['imagen'].'" alt="" width="300" height="300"/>
+                            <p><b><br>
+                            Precio: $'.$producto['precio_venta_actual'].'<br>
+                            Color: '.utf8_decode($producto['color']).'<br>
+                            Talla: '.utf8_decode($producto['talla']).'<br>
+                            Genero: '.utf8_decode($producto['genero']).'<br>');
                         if ($producto['stock']<=0){// sin stock
+                            echo ('<span class="required">Producto sin stock</span></b>');
+                        }else if ($producto['stock']<=5 && $producto['stock'] >=1){// bajo de stock
+                            echo ('<span class="required">Producto con poco stock</span></b>');
+                        }else{//alinear el boton en caso de una alerta
                             echo ('<b></b><br>');
-                        }else if ($producto['stock']<=1){// bajo de stock
-                            echo('');
                         }
                             echo ('</p>
                             <footer class="align-center">
-                                <input class="button special" value="Comprar"');
+                                <input type="button" class="button special" value="añadir al carrito" onclick="agregar_carrito('.$producto['codigo_producto'].')" ');
                         if ($producto['stock']<= 0) {
                             echo 'disabled';
                         }
@@ -90,9 +91,29 @@ require "../sections/nav_pages.php";
                     }
                     ?>
                 </div>
+                <header class="align-center">
+                    <a href="productos.php" class="button big">regresar</a>
+                </header>
             </div>
         </div>
     </div>
+    <script type="text/javascript">
+        function agregar_carrito(codigo) {
+            var id = parseInt(codigo);
+            if (!isNaN(id)){
+                $.ajax({
+                    data:{
+                        "id" : $("#id").val()
+                    },
+                    type: 'post',
+                    url: '../actions/agregar_carrito.php',
+                    success:function (response) {
+                        $('#num_carrito').html(response);
+                    }
+                });
+            }
+        }
+    </script>
 </section>
 <?php
 require "../sections/footer_pages.php";
