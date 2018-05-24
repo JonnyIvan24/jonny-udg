@@ -66,10 +66,9 @@ require "../sections/nav_pages.php";
                             <td>'.utf8_encode($producto['nombre']).'</td>
                             <td>'.$producto['marca'].'</td>
                             <td>'.$producto['categoria'].'</td>
-                            <td>'.$producto['genero'].'</td>
+                            <td>'.utf8_encode($producto['genero']).'</td>
                             <td>$'.$producto['precio_venta_actual'].'</td>
                             <td>
-                            <button type="button" class="btn btn-info">Detalles</button>
                             <a href="form_productos.php?sku='.$producto['sku'].'"><button type="button" class="btn btn-success">Editar</button></a>
                             <a href="../actions/eliminar_producto.php?sku='.$producto['sku'].'"><button type="button" class="btn btn-danger" 
                             onclick="return confirm1('.$producto['sku'].');"

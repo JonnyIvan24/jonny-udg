@@ -40,7 +40,7 @@ require "../sections/nav_pages.php";
     <div class="inner">
         <header class="align-center">
             <p>Store Caps & Sneakers</p>
-            <h2>Mis pedidos</h2>
+            <h2>Gestión de pedidos</h2>
         </header>
     </div>
 </section>
@@ -49,6 +49,13 @@ require "../sections/nav_pages.php";
     <div class="inner">
         <div class="box">
             <div class="content">
+                <header class="align-center">
+                    <?php
+                    if ($totalpedidos<=0){
+                        echo "<p><b><span class='required'>No tienes compras</span></b></p><br><br>";
+                    }
+                    ?>
+                </header>
                 <!--tabla-->
                 <div class="row uniform">
                     <div class="table-wrapper 6u 12u$(xsmall)">
@@ -82,26 +89,24 @@ require "../sections/nav_pages.php";
                                 <td>' . utf8_encode($pedido['nombre'] ." ". $pedido ['apaterno']) . '</td>
                                 <td>$ ' . $pedido['total'] . '</td>
                                 <td>' . $status . '</td>
-                                <td><button type="button" class="btn btn-info" onclick="mostrar_detalles('.$pedido['folio_pedido'].')">Detalles</button></td>
+                                <td><button type="button" class="btn btn-info" onclick="mostrar_detalles('.$pedido['folio_pedido'].')">Detalles</button>';
+                                if ($pedido['status']!=0 && $pedido['status']!= 2){
+                                    echo '<a href="../actions/cancelar_pedido.php?id='.$pedido['folio_pedido'].'"><button type="button" class="btn btn-danger" 
+                            onclick="return cancelarmipedido('.$pedido['folio_pedido'].');"
+                            >Cancelar</button></a>
+                                </td>
                             </tr>';
+                                }
                             }
                             ?>
                             </tbody>
                         </table>
                     </div>
-                    <div class="table-wrapper 6u 12u$(xsmall)">
-                        <table id="detalles">
-
-                        </table>
+                    <div class="table-wrapper 6u 12u$(xsmall)" id="detalles">
                     </div>
                 </div>
                 <div class="row uniform">
                     <header class="align-center">
-                        <?php
-                        if ($totalpedidos<=0){
-                            echo "<p><b><span class='required'>No tienes compras</span></b></p>";
-                        }
-                        ?>
                         <br><a href="<?php echo $pagina_anterior;?>"><button type="button" class="button special big">Regresar</button></a>
                     </header>
                 </div>

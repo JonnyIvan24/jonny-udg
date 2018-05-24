@@ -7,8 +7,8 @@ if(isset($_GET['sku'])){
     $marca = (int)$_POST['marca'];
     $categoria = (int)$_POST['categoria'];
     $genero = (int)$_POST['genero'];
-    $nombre = $_POST['nombre'];
-    $desc = $_POST['desc'];
+    $nombre = utf8_decode($_POST['nombre']);
+    $desc = utf8_decode($_POST['desc']);
     $precio_v = (float)$_POST['precio_v'];
     $sqlupdate = "UPDATE producto SET id_marca = $marca, id_categoria = $categoria, id_genero = $genero,
 nombre = '".$nombre."', descripcion = '".$desc."', precio_venta_actual =".$precio_v." WHERE sku = $sku";

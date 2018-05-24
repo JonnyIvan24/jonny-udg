@@ -6,7 +6,7 @@ if (isset($_GET['sku'])){//crear articulo
     $sku = (int)$_GET['sku'];
     $id = (int)$_POST['codigo'];
     $talla = (int)$_POST['talla'];
-    $color = $_POST['color'];
+    $color = utf8_decode($_POST['color']);
     $precio_c = (float)$_POST['precio_c'];
     $stock = (int)$_POST['stock'];
     $ruta = '../images/productos/'.$sku.'-'.$id.'/';

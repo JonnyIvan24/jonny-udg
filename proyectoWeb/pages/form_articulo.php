@@ -81,7 +81,7 @@ require "../sections/nav_pages.php";
                         <div class="4u 12u$(xsmall)">
                             <h4 for="color"><span class="required">*</span> Color:</h4>
                             <input name="color" id="color" type="text" placeholder="Color..." size="30"
-                            <?php if (isset($articulo)) echo 'value="'.$articulo['color'].'"';?>><br>
+                            <?php if (isset($articulo)) echo 'value="'.utf8_encode($articulo['color']).'"';?>><br>
                         </div>
                         <div class="4u 12u$(xsmall)">
                             <h4 for="precio_"><span class="required">*</span> precio de compra:</h4>
@@ -119,19 +119,16 @@ require "../sections/nav_pages.php";
     </div>
     <script type="text/javascript">
         function verificar_codigo() {
-            var codigo = parseInt(document.getElementById("codigo").value);
-            if (!isNaN(codigo)){
-                $.ajax({
-                    data:{
-                        "codigo1" : $("#codigo").val()
-                    },
-                    type: 'post',
-                    url: '../actions/codigo_existe.php',
-                    success:function (response) {
-                        $('#existe_codigo').html(response);
-                    }
-                });
-            }
+            $.ajax({
+                data:{
+                    "codigo1" : $("#codigo").val()
+                },
+                type: 'post',
+                url: '../actions/codigo_existe.php',
+                success:function (response) {
+                    $('#existe_codigo').html(response);
+                }
+            });
         }
     </script>
 </section>

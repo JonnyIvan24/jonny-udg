@@ -11,15 +11,16 @@ INNER JOIN producto p2 ON e.sku = p2.sku
 INNER JOIN marca m ON p2.id_marca = m.id_marca WHERE p.folio_pedido = {$id}";
     $result = $conn->query($sql);
     $articulos = $result->fetchAll();
-    echo '<table>
+    echo '
+                        <table class="alt">
                             <thead>
                             <tr>
-                                <th>Nombre</th>
+                                <th>Nombre del articulo</th>
                                 <th>Marca</th>
                                 <th>Talla</th>
                                 <th>Color</th>
                                 <th>Cantidad</th>
-                                <th>Precio unitario</th>
+                                <th>Precio</th>
                             </tr>
                             </thead>
                             <tbody>';
@@ -31,8 +32,9 @@ INNER JOIN marca m ON p2.id_marca = m.id_marca WHERE p.folio_pedido = {$id}";
                             <td>'.utf8_encode($articulo['color']).'</td>
                             <td>'.$articulo['cantidad'].'</td>
                             <td>$'.$articulo['precio_venta'].'</td>
-                            <td></td>';
+                            </tr>';
     }
+    echo "</table>";
     $conn = null;
 }else{
     $conn = null;

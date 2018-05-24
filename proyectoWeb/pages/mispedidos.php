@@ -26,6 +26,11 @@ $totalpedidos = $result->rowCount();
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../css/main.css" />
     <link rel="stylesheet" href="../css/estilos_proyecto.css"/>
+    <script id="conf">
+        function cancelarmipedido(id) {
+            return confirm("¿Estas seguro de querer cancelar el pedido " + id + "?") == true;
+        }
+    </script>
 </head>
 <?php
 require "../sections/nav_pages.php";
@@ -82,17 +87,21 @@ require "../sections/nav_pages.php";
                                 <td>' . date("d/m/y", strtotime( $pedido['fecha'])). '</td>
                                 <td>$ ' . $pedido['total'] . '</td>
                                 <td>' . $status . '</td>
-                                <td><button type="button" class="btn btn-info" onclick="mostrar_detalles('.$pedido['folio_pedido'].')">Detalles</button></td>
+                                <td>
+                                <button type="button" class="btn btn-info" onclick="mostrar_detalles('.$pedido['folio_pedido'].')">Detalles</button>';
+                                if ($pedido['status']!=0 && $pedido['status']!= 2){
+                                    echo '<a href="../actions/cancelar_pedido.php?id='.$pedido['folio_pedido'].'"><button type="button" class="btn btn-danger" 
+                            onclick="return cancelarmipedido('.$pedido['folio_pedido'].');"
+                            >Cancelar</button></a>
+                                </td>
                             </tr>';
+                                }
                                 }
                             ?>
                             </tbody>
                         </table>
                     </div>
-                    <div class="table-wrapper 6u 12u$(xsmall)">
-                        <table id="detalles">
-
-                        </table>
+                    <div class="table-wrapper 6u 12u$(xsmall)" id="detalles">
                     </div>
                 </div>
                 <div class="row uniform">

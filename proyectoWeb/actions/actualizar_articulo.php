@@ -4,7 +4,7 @@ $pagina_anterior = $_SERVER['HTTP_REFERER'];
 if (isset($_GET['id'])){
     $id = (int)$_GET['id'];
     $id_talla = (int)$_POST['talla'];
-    $color = $_POST['color'];
+    $color = utf8_decode($_POST['color']);
     $stock = (int)$_POST['stock'];
     $precio_c = (float)$_POST['precio_c'];
 

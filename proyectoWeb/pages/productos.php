@@ -55,11 +55,11 @@ require "../sections/nav_pages.php";
                     <div class="8u  align-center">
                         <span class="image fit"><a href="articulos_producto.php?sku='.$producto['sku'].'"><img src="'.$articulo['ruta'].$articulo['imagen'].'" alt="" height="180" /></a></span>
                             <p>
-                            <b>'.utf8_decode($producto['nombre']).'</b><br>
+                            <b>'.utf8_encode($producto['nombre']).'</b><br>
                             <b>Precio:</b> $'.$producto['precio_venta_actual'].'<br>
-                            <b>Marca:</b> '.utf8_decode($producto['marca']).'<br>
-                            <b>Categoría:</b> '.utf8_decode($producto['categoria']).'<br>
-                            <b>Genero:</b> '.utf8_decode($producto['genero']).'<br>
+                            <b>Marca:</b> '.utf8_encode($producto['marca']).'<br>
+                            <b>Categoría:</b> '.utf8_encode($producto['categoria']).'<br>
+                            <b>Genero:</b> '.utf8_encode($producto['genero']).'<br>
                             </p>
                             <footer class="align-center">
 								<a href="articulos_producto.php?sku='.$producto['sku'].'" class="button alt">Más detalles</a>

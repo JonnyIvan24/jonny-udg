@@ -171,11 +171,10 @@ require "../sections/nav_pages.php";
                         echo ('<tr>
                                 <td>'.$codigo.'</td>
                                 <td>'.$estilo['talla'].'</td>
-                                <td>'.$estilo['color'].'</td>
+                                <td>'.utf8_encode($estilo['color']).'</td>
                                 <td>'.$estilo['stock'].'</td>
                                 <td>$ '.$estilo['precio_costo'].'</td>
                                 <td>
-                                <button type="button" class="btn btn-info">Detalles</button>
                                 <a href="form_articulo.php?sku='.$producto['sku'].'&id='.$estilo['codigo_producto'].'"><button type="button" class="btn btn-success">Editar</button></a>
                                 <a href="../actions/eliminar_articulo.php?id='.$estilo['codigo_producto'].'"><button type="button" class="btn btn-danger" 
                                 onclick="return confirm1('.$estilo['codigo_producto'].');"
@@ -201,8 +200,7 @@ require "../sections/nav_pages.php";
     </div>
     <script type="text/javascript">
         function verificar_sku() {
-            var sku = parseInt(document.getElementById("sku").value);
-            if (!isNaN(sku)){
+            var sku = document.getElementById("sku").value;
                 $.ajax({
                     data:{
                         "sku1" : $("#sku").val()
@@ -213,7 +211,6 @@ require "../sections/nav_pages.php";
                         $('#existe_sku').html(response);
                     }
                 });
-            }
         }
     </script>
 </section>

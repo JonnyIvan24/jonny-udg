@@ -56,7 +56,7 @@ require "../sections/nav_pages.php";
         <div class="box">
             <div class="content">
                 <header class="align-center">
-                    <p><b><?php echo utf8_decode($nombre['descripcion'])?></b></p>
+                    <p><b><?php echo utf8_encode($nombre['descripcion'])?></b></p>
                 </header><br>
                 <div class="gallery">
                     <?php
@@ -67,9 +67,9 @@ require "../sections/nav_pages.php";
                         <img src="'.$producto['ruta'].$producto['imagen'].'" alt="" width="300" height="300"/>
                             <p><b><br>
                             Precio: $'.$producto['precio_venta_actual'].'<br>
-                            Color: '.utf8_decode($producto['color']).'<br>
-                            Talla: '.utf8_decode($producto['talla']).'<br>
-                            Genero: '.utf8_decode($producto['genero']).'<br>');
+                            Color: '.utf8_encode($producto['color']).'<br>
+                            Talla: '.utf8_encode($producto['talla']).'<br>
+                            Genero: '.utf8_encode($producto['genero']).'<br>');
                         if ($producto['stock']<=0){// sin stock
                             echo ('<span class="required">Producto sin stock</span></b>');
                         }else if ($producto['stock']<=5 && $producto['stock'] >=1){// bajo de stock
